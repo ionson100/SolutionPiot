@@ -49,12 +49,12 @@ builder.Host.UseSerilog((context, config) =>
 
 
 // Добавляем внешний файл конфигурации (будет смонтирован в Docker)
-builder.Configuration.AddJsonFile("config/settings.json", optional: true, reloadOnChange: true);
+builder.Configuration.AddJsonFile("piot/settings.json", optional: true, reloadOnChange: true);
 
 // Переменные окружения переопределяют значения из файлов
 builder.Configuration.AddEnvironmentVariables();
 
-// Регистрируем сервисы
+// Регистрируем сервис
 builder.Services.Configure<MySettings>(builder.Configuration.GetSection("MySettings"));
 
 

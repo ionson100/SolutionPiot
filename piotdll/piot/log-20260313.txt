@@ -1,0 +1,93 @@
+2026-03-13 12:25:27.496 +00:00 [INF] Запуск приложения
+2026-03-13 12:26:00.690 +00:00 [INF] 
+************** Проверка кодов с помощью ТС ПИоТ **************
+Список проверяемых кодов:
+0104670540176099215'W9Um93dGVz [MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg==]
+URL TC РИоТ: https://esm-emu.ao-esp.ru/api/v2/codes/check
+Тело запроса:
+{"codes":["MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg=="],"client_info":{"name":"bitnic","version":"0.0.1","id":"18aa4ecf-523c-4c2a-a759-d0435f4c0408","token":"18aa4ecf-523c-4c2a-a759-d0435f4c0408"}}
+Http code: 200
+Тело ответа:
+{"codesResponse":[{"code":0,"description":"ok","codes":[{"cis":"0104670540176099215'W9Um\u001D93dGVz","found":true,"valid":true,"printView":"0104670540176099215'W9Um","gtin":"04670540176099","groupIds":[8],"verified":true,"realizable":false,"utilised":false,"isBlocked":false,"ogvs":[],"errorCode":0,"isTracking":false,"sold":false,"grayZone":false,"packageType":"UNIT","producerInn":"7725344604"}],"reqId":"c117ab9a-8514-4084-a690-954af05e9b2b","reqTimestamp":1773404760587,"isCheckedOffline":false}]}
+Кода были проверены online.
+Результат проверки кодов:
+Код: 0104670540176099215'W9Um93dGVz
+Продажа: запретить
+Причина: Продажа запрещена. Причина: Код маркировки не нанесён
+Код группы: 8
+Тэг 1265: UUID=c117ab9a-8514-4084-a690-954af05e9b2b&Time=1773404760587
+Тест: 5.1
+Описание теста: Запрет продажи товара при отсутствии в информационной системе мониторинга сведений о его нанесении
+
+
+
+2026-03-13 12:29:48.175 +00:00 [INF] Запуск приложения
+2026-03-13 12:30:21.423 +00:00 [INF] 
+************** Проверка кодов с помощью ТС ПИоТ **************
+Список проверяемых кодов:
+0104670540176099215'W9Um93dGVz [MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg==]
+URL TC РИоТ: https://esm-emu.ao-esp.ru/api/v2/codes/check
+Тело запроса:
+{"codes":["MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg=="],"client_info":{"name":"bitnic","version":"0.0.1","id":"18aa4ecf-523c-4c2a-a759-d0435f4c0408","token":"18aa4ecf-523c-4c2a-a759-d0435f4c0408"}}
+Http code: 200
+Тело ответа:
+{"codesResponse":[{"code":0,"description":"ok","codes":[{"cis":"0104670540176099215'W9Um\u001D93dGVz","found":true,"valid":true,"printView":"0104670540176099215'W9Um","gtin":"04670540176099","groupIds":[8],"verified":true,"realizable":false,"utilised":false,"isBlocked":false,"ogvs":[],"errorCode":0,"isTracking":false,"sold":false,"grayZone":false,"packageType":"UNIT","producerInn":"7725344604"}],"reqId":"a058d7e0-550a-4536-add7-fc55deb75243","reqTimestamp":1773405021298,"isCheckedOffline":false}]}
+Кода были проверены online.
+Результат проверки кодов:
+Код: 0104670540176099215'W9Um93dGVz
+Продажа: запретить
+Причина: Продажа запрещена. Причина: Код маркировки не нанесён
+Код группы: 8
+Тэг 1265: UUID=a058d7e0-550a-4536-add7-fc55deb75243&Time=1773405021298
+Тест: 5.1
+Описание теста: Запрет продажи товара при отсутствии в информационной системе мониторинга сведений о его нанесении
+
+
+
+2026-03-13 12:34:32.928 +00:00 [INF] Запуск приложения
+2026-03-13 12:35:07.523 +00:00 [INF] 
+************** Проверка кодов с помощью ТС ПИоТ **************
+Список проверяемых кодов:
+0104670540176099215'W9Um93dGVz [MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg==]
+URL TC РИоТ: https://esm-emu.ao-esp.ru/api/v2/codes/check
+Тело запроса:
+{"codes":["MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg=="],"client_info":{"name":"bitnic","version":"0.0.1","id":"18aa4ecf-523c-4c2a-a759-d0435f4c0408","token":"18aa4ecf-523c-4c2a-a759-d0435f4c0408"}}
+Http code: 200
+Тело ответа:
+{"codesResponse":[{"code":0,"description":"ok","codes":[{"cis":"0104670540176099215'W9Um\u001D93dGVz","found":true,"valid":true,"printView":"0104670540176099215'W9Um","gtin":"04670540176099","groupIds":[8],"verified":true,"realizable":false,"utilised":false,"isBlocked":false,"ogvs":[],"errorCode":0,"isTracking":false,"sold":false,"grayZone":false,"packageType":"UNIT","producerInn":"7725344604"}],"reqId":"2e1cd21d-b8a2-40be-80af-f154866453bd","reqTimestamp":1773405307362,"isCheckedOffline":false}]}
+Кода были проверены online.
+Результат проверки кодов:
+Код: 0104670540176099215'W9Um93dGVz
+Продажа: запретить
+Причина: Продажа запрещена. Причина: Код маркировки не нанесён
+Код группы: 8
+Тэг 1265: UUID=2e1cd21d-b8a2-40be-80af-f154866453bd&Time=1773405307362
+Тест: 5.1
+Описание теста: Запрет продажи товара при отсутствии в информационной системе мониторинга сведений о его нанесении
+
+
+
+2026-03-13 12:37:58.003 +00:00 [INF] Запуск приложения
+2026-03-13 12:38:35.352 +00:00 [INF] 
+************** Проверка кодов с помощью ТС ПИоТ **************
+Список проверяемых кодов:
+0104670540176099215'W9Um93dGVz [MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg==]
+URL TC РИоТ: https://esm-emu.ao-esp.ru/api/v2/codes/check
+Тело запроса:
+{"codes":["MDEwNDY3MDU0MDE3NjA5OTIxNSdXOVVtHTkzZEdWeg=="],"client_info":{"name":"bitnic","version":"0.0.1","id":"18aa4ecf-523c-4c2a-a759-d0435f4c0408","token":"18aa4ecf-523c-4c2a-a759-d0435f4c0408"}}
+Http code: 200
+Тело ответа:
+{"codesResponse":[{"code":0,"description":"ok","codes":[{"cis":"0104670540176099215'W9Um\u001D93dGVz","found":true,"valid":true,"printView":"0104670540176099215'W9Um","gtin":"04670540176099","groupIds":[8],"verified":true,"realizable":false,"utilised":false,"isBlocked":false,"ogvs":[],"errorCode":0,"isTracking":false,"sold":false,"grayZone":false,"packageType":"UNIT","producerInn":"7725344604"}],"reqId":"6a91107e-33ca-4c6b-a2ff-f62dcd783f56","reqTimestamp":1773405515221,"isCheckedOffline":false}]}
+Кода были проверены online.
+Результат проверки кодов:
+Код: 0104670540176099215'W9Um93dGVz
+Продажа: запретить
+Причина: Продажа запрещена. Причина: Код маркировки не нанесён
+Код группы: 8
+Тэг 1265: UUID=6a91107e-33ca-4c6b-a2ff-f62dcd783f56&Time=1773405515221
+Тест: 5.1
+Описание теста: Запрет продажи товара при отсутствии в информационной системе мониторинга сведений о его нанесении
+
+
+
+2026-03-13 12:39:39.903 +00:00 [INF] Запуск приложения

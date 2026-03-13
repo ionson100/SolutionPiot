@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using piotdll.Models;
 
 namespace piotdll;
 
@@ -12,20 +13,9 @@ namespace piotdll;
 /// </summary>
 public static class UtilsPiot
 {
-    // Остовой URL для проверки локально
-    //public const string URL_LOCAL = "https://localhost:51401/api/v2/codes/check";
-    // Основной URL API PIOT эмулятор
-    //public const string URL = "https://esm-emu.ao-esp.ru/api/v2/codes/check";
-    // URL локального модуля
-    //public const string URL_LM = "http://localhost:5995/api/v2/cis/outCheck";
+    
 
-    // Информация о кассовом ПО (ПМСР)
-    //public const string NAME = "bitnic";
-    //public const string VERSION = "0.0.1";
-    //public const string ID = "18aa4ecf-523c-4c2a-a759-d0435f4c0408"; // Идентификатор в реестре ГИС МТ
 
-    // Заголовки HTTP-запросов
-    //public const string CONTENT_TYPE = "application/json";
 
     /// <summary>
     /// Кодирует строку КИЗ в формат Base64.

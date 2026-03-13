@@ -1,7 +1,0 @@
-{
-  "MySettings": {
-    "ApiKey": "super-secret-key-123",
-    "MaxRetries": 5,
-    "EnableFeatureX": true
-  }
-}

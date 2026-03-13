@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 
+namespace piotdll.Models;
+
 /// <summary>
 /// Результат проверки кода маркировки.
 /// Содержит статус продажи, причину отказа (если есть), тег 1265 и цену для табачной продукции.
@@ -71,7 +73,7 @@ public class MOutItems : MInItems
     }
 
     /// <summary>
-    /// Формирует многострочный лог с деталями проверки.
+    /// Формирует много строчный лог с деталями проверки.
     /// </summary>
     public string GetStringForLog()
     {

@@ -6,13 +6,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using piotdll.Models;
 using piotdll.validators;
 
 namespace piotdll;
 
 /// <summary>
 /// Класс для выполнения HTTP-запросов к системе PIOT и обработки ответов.
-/// В случае ошибок или таймаутов переключается на локальный модуль проверки.
+/// В случае ошибок или тайм аутов переключается на локальный модуль проверки.
 /// </summary>
 public class MainRequestPiot
 {
@@ -62,7 +63,7 @@ public class MainRequestPiot
 
     /// <summary>
     /// Основной метод для выполнения запроса к PIOT.
-    /// При неудаче (ошибка сети, 5xx, таймаут) — используется локальный модуль.
+    /// При неудаче (ошибка сети, 5xx, тайм аут) — используется локальный модуль.
     /// </summary>
     /// <param name="mInItems">Список входных элементов</param>
     /// <param name="log">Лог-строитель</param>
@@ -87,8 +88,7 @@ public class MainRequestPiot
                 log.AppendLine($"{item.Km} [{cisBase64}]");
             }
 
-            // Загрузка переменных окружения (аналог Dotenv)
-            // В реальном проекте используйте IConfiguration или DotNetEnv
+           
             string token = MainPoint.MySettings.Token
                            ?? throw new InvalidOperationException("Токен не задан");
 
@@ -112,7 +112,7 @@ public class MainRequestPiot
 
             // Настройка HttpClient
             httpClient = new HttpClient();
-            httpClient.Timeout = TimeSpan.FromMilliseconds(3500); // Таймаут соединения и чтения
+            httpClient.Timeout = TimeSpan.FromMilliseconds(MainPoint.MySettings.Timeout); // Тайм аут соединения и чтения
 
             using var request = new HttpRequestMessage(HttpMethod.Post, urlCore);
             request.Content = new ByteArrayContent(postDataBytes);
@@ -180,7 +180,7 @@ public class MainRequestPiot
         }
         catch (TaskCanceledException ex) when (ex.InnerException is TimeoutException || ex.InnerException is SocketException)
         {
-            // Таймаут соединения или неизвестный хост
+            // Тайм аут соединения или неизвестный хост
             log.AppendLine("ТС ПИоТ ошибка подключения либо тайм-аут.");
             log.AppendLine("Переходим к проверке через локальный модуль.");
             await ErrorAction(mInItems, log, resultCallback);

@@ -1,4 +1,6 @@
-﻿namespace piotdll.validators;
+﻿using piotdll.Models;
+
+namespace piotdll.validators;
 
 /// <summary>
 /// Утилитарный класс для проверки цены товаров по группам (3, 12, 16).

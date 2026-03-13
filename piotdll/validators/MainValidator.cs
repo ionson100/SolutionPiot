@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using piotdll.Models;
 
 
 namespace piotdll.validators;
@@ -85,7 +86,7 @@ public class MainValidator : BaseValidator
             }
 
             // Формирование тега 1265 (без version и inst, так как не используется в онлайн)
-            mOutItem.Tag1265 = string.Format("UUID={0}&Time={1}", codeBox.ReqId, codeBox.ReqTimestamp);
+            mOutItem.Tag1265 = $"UUID={codeBox.ReqId}&Time={codeBox.ReqTimestamp}";
 
             mOut.ItemsList.Add(mOutItem);
         }

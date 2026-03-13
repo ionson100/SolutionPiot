@@ -6,13 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+	  <DockerfileRunArguments>  --add-host=host.docker.internal:host-gateway -v C:\piot:/app/piot</DockerfileRunArguments>
 
-    
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-   
-    <NoWarn>$(NoWarn);1591</NoWarn>
-   
-    <LangVersion>latest</LangVersion>
+
+
+
+
+
+
+	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,10 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\piotdll\piotdll.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="logs\" />
   </ItemGroup>
 
 </Project>

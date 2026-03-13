@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿namespace piotdll.Models;
+
+/// <summary>
 /// Единица входных данных для проверки кода, применима к тестовому сопровождению
 /// </summary>
 public class MInItems

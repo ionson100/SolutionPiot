@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "piot_123", "piot_123\piot_1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "piotdll", "piotdll\piotdll.csproj", "{5D6B5591-B716-3CB3-E56F-14644A5E2B61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_console", "test_console\test_console.csproj", "{95CD712C-CE7C-4733-A8EA-988D11151E19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5D6B5591-B716-3CB3-E56F-14644A5E2B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D6B5591-B716-3CB3-E56F-14644A5E2B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D6B5591-B716-3CB3-E56F-14644A5E2B61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CD712C-CE7C-4733-A8EA-988D11151E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CD712C-CE7C-4733-A8EA-988D11151E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CD712C-CE7C-4733-A8EA-988D11151E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CD712C-CE7C-4733-A8EA-988D11151E19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

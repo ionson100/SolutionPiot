@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
+namespace piotdll.Models;
 
 /// <summary>
 /// Результат проверки

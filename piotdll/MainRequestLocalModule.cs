@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using piotdll.Models;
 
 namespace piotdll;
 
@@ -122,8 +123,8 @@ public class MainRequestLocalModule
         log.AppendLine("Тело запроса:");
         log.AppendLine(jsonBody);
 
-        // Получение токена авторизации (аналог Dotenv)
-        var authToken = Environment.GetEnvironmentVariable("AUTHORIZATION")
+    
+        var authToken = MainPoint.MySettings.Authorization
                         ?? throw new InvalidOperationException("AUTHORIZATION environment variable is not set.");
 
         using var httpClient = new HttpClient();
