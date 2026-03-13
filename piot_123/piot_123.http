@@ -1,0 +1,6 @@
+@piot_123_HostAddress = http://localhost:5253
+
+GET {{piot_123_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
