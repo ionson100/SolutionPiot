@@ -26,25 +26,25 @@ public class MainRequestPiot
         /// Наименование ПМСР
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string  Name { get; set; } = null!;
 
         /// <summary>
         ///  // Версия ПМСР
         /// </summary>
         [JsonProperty("version")]
-        public string Version { get; set; }
+        public string Version { get; set; } = null!;
 
         /// <summary>
         ///  Идентификатор в реестре ГИС МТ
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = null!;
 
         /// <summary>
         /// Токен авторизации
         /// </summary>
         [JsonProperty("token")]
-        public string Token { get; set; }
+        public string Token { get; set; } = null!;
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class MainRequestPiot
 
 
         [JsonProperty("client_info")]
-        public ClientInfo ClientInfo { get; set; }
+        public ClientInfo ClientInfo { get; set; } = null!;
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public class MainRequestPiot
         log.AppendLine("************** Проверка кодов с помощью ТС ПИоТ **************");
         log.AppendLine("Список проверяемых кодов:");
 
-        HttpResponseMessage response = null;
-        HttpClient httpClient = null;
+        HttpResponseMessage? response = null;
+        HttpClient? httpClient = null;
 
         try
         {

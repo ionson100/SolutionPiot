@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,8 @@ namespace piotdll
 {
     public class MainPoint
     {
-        public static MySettings MySettings;
+        public  static MySettings MySettings = null!;
+        public static Func<string, double> GetPrice = null!;
         private readonly bool _useTest;
 
         /// <summary>
@@ -16,10 +18,12 @@ namespace piotdll
         /// Можно держать как синглетон, так и создавать новый каждый раз
         /// </summary>
         /// <param name="mySettings">Ваши настройки проверки</param>
+        /// <param name="getPrice">Функция получения цены по gtin в копейках</param>
         /// <param name="useTest">Для тестировании прохождение сертификации включить (true)</param>
-        public MainPoint(MySettings mySettings,bool useTest=false)
+        public MainPoint(MySettings mySettings, Func<string, double> getPrice, bool useTest = false)
         {
             MySettings=mySettings;
+            GetPrice = getPrice;
             _useTest = useTest;
         }
 
@@ -30,8 +34,22 @@ namespace piotdll
         /// </summary>
         /// <param name="codes">Список кодов (код полный с разделителем групп</param>
         /// <returns>MOut — результат проверки или описание ошибки, записанное в поле: TotalErrorMessage</returns>
-        public async Task<MOut> CheckCode(List<string> codes)
+        public async Task<MOut> CheckCode(List<string>? codes)
         {
+            if(codes == null || codes.Count == 0)
+            {
+                return new MOut("Список кодов пустой.");
+            }
+            HashSet<string> set = new HashSet<string>();
+            foreach (string code in codes)
+            {
+                if (set.Contains(code))
+                {
+                    return new MOut($"Код: {code} повторяется в запросе.");
+                }
+
+                set.Add(code);
+            }
             var requestHandler = new MainRequestPiot();
             List<MInItems> mInItems;
             if (_useTest)

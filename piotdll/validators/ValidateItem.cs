@@ -1,5 +1,6 @@
 ﻿using System;
 using piotdll.Models;
+using piotdll.Models.v2;
 
 
 namespace piotdll.validators;
@@ -106,7 +107,8 @@ internal class ValidateItem : BaseValidator
         ValidatePrice.Validate(mOut, code);
 
         // Все проверки пройдены
-        mOut.PermitSale = true;
+        if(mOut.ErrorMessage==null)
+           mOut.PermitSale = true;
         return mOut;
     }
 

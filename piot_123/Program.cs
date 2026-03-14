@@ -23,6 +23,8 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Description = "Description of your API."
     });
+    
+   
 
     // --- ВАЖНАЯ ЧАСТЬ: Подключаем XML-комментарии ---
     // Получаем имя исполняемой сборки (вашего проекта)
@@ -31,11 +33,12 @@ builder.Services.AddSwaggerGen(options =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, "piotdll.xml");
 
     // Этот метод заставляет Swagger читать комментарии из XML
-    options.IncludeXmlComments(xmlPath);
+    options.IncludeXmlComments(xmlPath,true);
 
     // Второй параметр (true) включает комментарии для контроллеров, если вы их тоже добавите
     // options.IncludeXmlComments(xmlPath, true); 
 });
+
 
 // Настройка Serilog
 builder.Host.UseSerilog((context, config) =>

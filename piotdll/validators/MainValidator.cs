@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using piotdll.Models;
+using piotdll.Models.v2;
 
 
 namespace piotdll.validators;
@@ -26,10 +27,10 @@ public class MainValidator : BaseValidator
         };
 
         // Парсинг JSON
-        JsonBody_v2 bodyV2;
+        JsonBodyV2 bodyV2;
         try
         {
-            bodyV2 = JsonConvert.DeserializeObject<JsonBody_v2>(json);
+            bodyV2 = JsonConvert.DeserializeObject<JsonBodyV2>(json);
             mOut.BodyV2 = bodyV2;
         }
         catch (Exception ex)
@@ -101,21 +102,16 @@ public class MainValidator : BaseValidator
     {
         var outItem = new MOutItems
         {
-            Km = code.Cis,
+            Km = mIn.Km,
             PermitSale = !code.IsBlocked,
-            ErrorMessage = code.IsBlocked ? "Продажа заблокирована в локальном модуле." : null
+            ErrorMessage = code.IsBlocked ? "Продажа заблокирована в локальном модуле." : null,
+            DescriptionCase = mIn.DescriptionCase,
+            IdCase = mIn.IdCase,
+            Tag1265 = string.Format(
+                "UUID={0}&Time={1}&Inst={2}&Ver={3}",
+                codeBox.ReqId, codeBox.ReqTimestamp, codeBox.Inst, codeBox.Version
+            )
         };
-
-        if (mIn != null)
-        {
-            outItem.DescriptionCase = mIn.DescriptionCase;
-            outItem.IdCase = mIn.IdCase;
-        }
-
-        outItem.Tag1265 = string.Format(
-            "UUID={0}&Time={1}&Inst={2}&Ver={3}",
-            codeBox.ReqId, codeBox.ReqTimestamp, codeBox.Inst, codeBox.Version
-        );
 
         return outItem;
     }

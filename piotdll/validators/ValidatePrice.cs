@@ -1,4 +1,5 @@
 ﻿using piotdll.Models;
+using piotdll.Models.v2;
 
 namespace piotdll.validators;
 
@@ -143,14 +144,13 @@ internal static class ValidatePrice
     }
 
     /// <summary>
-    /// Получает цену за единицу товара из внешнего источника (например, базы данных).
+    /// Получает цену за единицу товара из внешнего источника (например, базы данных) в копейках.
     /// Временная реализация — возвращает фиксированное значение.
     /// </summary>
     /// <param name="gtin">GTIN товара</param>
     /// <returns>цена в копейках</returns>
     private static double GetPriceNsp(string gtin)
     {
-        // TODO: Заменить на реальное получение цены из БД или справочника
-        return 150.0 * 100; // 150 рублей → 15000 копеек
+        return MainPoint.GetPrice(gtin);
     }
 }

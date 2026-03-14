@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using piotdll.Models.v2;
 
 namespace piotdll.Models;
 
@@ -12,17 +13,17 @@ public class MOut
     /// Глобальное сообщение об ошибке, возникшей при выполнении запроса:
     /// Если это поле не null — значит проверка не прошла
     /// </summary>
-    public string TotalErrorMessage { get; set; }
+    public string? TotalErrorMessage { get; set; }
 
     /// <summary>
     /// Список результатов проверки.
     /// </summary>
-    public List<MOutItems> ItemsList { get; set; }
+    public List<MOutItems>? ItemsList { get; set; }
 
     /// <summary>
     /// Тело ответа в формате v2.
     /// </summary>
-    public JsonBody_v2 BodyV2 { get; set; }
+    public JsonBodyV2 BodyV2 { get; set; } = null!;
 
     /// <summary>
     /// Конструктор по умолчанию — инициализирует объект с пустыми полями.
@@ -42,7 +43,7 @@ public class MOut
         TotalErrorMessage = errorMessage;
     }
 
-    public string LogString { get; set; }
+    public string LogString { get; set; } = null!;
 
     /// <summary>
     /// Возвращает строковое представление объекта.

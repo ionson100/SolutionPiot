@@ -25,7 +25,7 @@ public class MOutItems : MInItems
     /// Причина запрета продажи. Отображается кассиру.
     /// Может быть null, если продажа разрешена.
     /// </summary>
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
     /// <summary>
     /// Значение тега 1265 (ФНС), формируется при успешной проверке.
