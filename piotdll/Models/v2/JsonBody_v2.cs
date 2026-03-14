@@ -12,7 +12,7 @@ public class JsonBodyV2
     /// Список ответов по кодам
     /// </summary>
     [JsonProperty("codesResponse")]
-    public List<CodesResponse> CodesResponse { get; set; }
+    public List<CodesResponse>? CodesResponse { get; set; }
 
     /// <summary>
     /// Код ответа

@@ -26,13 +26,13 @@ public class CodesResponse
     /// Список проверяемых кодов с детальными результатами.
     /// </summary>
     [JsonProperty("codes")]
-    public List<ItemCode> Codes { get; set; }
+    public List<ItemCode>? Codes { get; set; }
 
     /// <summary>
     /// Уникальный идентификатор запроса. Формат: UUID.
     /// </summary>
     [JsonProperty("reqId")]
-    public string ReqId { get; set; }
+    public string? ReqId { get; set; }
 
     /// <summary>
     /// Дата и время формирования запроса (в UTC) с точностью до миллисекунд.
@@ -52,11 +52,11 @@ public class CodesResponse
     /// Идентификатор экземпляра ПО «Локальный модуль «Честный ЗНАК».
     /// </summary>
     [JsonProperty("inst")]
-    public string Inst { get; set; }
+    public string? Inst { get; set; }
 
     /// <summary>
     /// Версия ПО «Локальный модуль «Честный ЗНАК».
     /// </summary>
     [JsonProperty("version")]
-    public string Version { get; set; }
+    public string? Version { get; set; }
 }

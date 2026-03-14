@@ -25,17 +25,19 @@ public class CodeCheck(ILogger<CodeCheck> logger, IOptions<MySettings> options) 
     /// <param name="codesList">Массив объектов CodeUnit</param> 
     /// <returns>MOut — результат проверки</returns>
     [HttpPost]
-    [Route("/api/v1/check")]
+    [Route("/api/v2/check")]
     public async Task<MOut> Post( List<CodeUnit>? codesList)
     {
-        
+       
+
+
         if (codesList == null || codesList.Count == 0)
         {
             
             //codesList = new List<CodeUnit>() { new() { Km = "0104670540176099215'W9Um\u001d93dGVz" } };
             //codesList = new List<CodeUnit>() { new() { Km = "010461013628057121/798DM%\u001d8005199000\u001d93dGVz" } };
-            //codesList = new List<CodeUnit>() { new() { Km = "00840147505712Zz;ZnRbAAAAdGVz",PriceTobaccoGroup = 15000} };
-            codesList = new List<CodeUnit>() { new() { Km = "0104607010350246215kRdG-1%W(Umn\u001d93dGVz", PriceTobaccoGroup = 15000 } };
+            codesList = new List<CodeUnit>() { new() { Km = "00840147505712Zz;ZnRbAAAAdGVz",PriceTobaccoGroup = 15000} };
+            //codesList = new List<CodeUnit>() { new() { Km = "0104607010350246215kRdG-1%W(Umn\u001d93dGVz", PriceTobaccoGroup = 15000 } };
             //return new MOut("Список кодов пустой");
         }
 

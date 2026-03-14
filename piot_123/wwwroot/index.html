@@ -1,0 +1,793 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Основные мета-теги -->
+    <title>Веб-сервис для проверки кодов маркировки | API v2</title>
+    <meta name="description" content="Тестовый веб-сервис для проверки кодов маркировки Честный ЗНАК. API v2, ASP.NET Core, Swagger, документация с примерами.">
+    <meta name="keywords" content="Честный ЗНАК, маркировка, проверка кодов, API, PIOT, ASP.NET Core, Swagger">
+    <meta name="author" content="ionson100">
+
+    <!-- Open Graph / Facebook / ВКонтакте -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ionson100.github.io/SolutionPiot/">
+    <meta property="og:title" content="Веб-сервис для проверки кодов маркировки | API v2">
+    <meta property="og:description" content="⚠️ Тестовый сервис. Использование на свой риск. Документация API для проверки кодов маркировки Честный ЗНАК.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/cf222e/ffffff?text=⚠️+Ответственность+на+пользователе">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Предупреждение об ответственности">
+    <meta property="og:site_name" content="SolutionPiot Docs">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ionson100">
+    <meta name="twitter:creator" content="@ionson100">
+    <meta name="twitter:title" content="Веб-сервис для проверки кодов маркировки | API v2">
+    <meta name="twitter:description" content="⚠️ Тестовый сервис. Использование на свой риск. Документация API для проверки кодов маркировки.">
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x600/cf222e/ffffff?text=⚠️+Ответственность+на+пользователе">
+    <meta name="twitter:image:alt" content="Предупреждение об ответственности">
+
+    <!-- Telegram / Viber / WhatsApp -->
+    <meta property="telegram:channel" content="@ionson100">
+    <meta property="og:telegram:image" content="https://via.placeholder.com/1200x630/cf222e/ffffff?text=⚠️+API+v2">
+
+    <!-- Дополнительные мета-теги -->
+    <meta name="theme-color" content="#cf222e">
+    <meta name="msapplication-TileColor" content="#cf222e">
+
+    <!-- Favicon с предупреждением -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23cf222e'/%3E%3Ctext x='30' y='70' font-size='60' fill='white' font-weight='bold'%3E!%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23cf222e'/%3E%3Ctext x='30' y='70' font-size='60' fill='white' font-weight='bold'%3E!%3C/text%3E%3C/svg%3E">
+
+    <style>
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --text-primary: #24292e;
+            --text-secondary: #57606a;
+            --border-color: #d0d7de;
+            --accent: #0969da;
+            --accent-light: #e7f3ff;
+            --code-bg: #f6f8fa;
+            --code-border: #eaeef2;
+            --success: #1a7f37;
+            --warning: #9a6700;
+            --danger: #cf222e;
+            --danger-light: #ffebe9;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0d1117;
+                --bg-secondary: #161b22;
+                --text-primary: #e6edf3;
+                --text-secondary: #8b949e;
+                --border-color: #30363d;
+                --accent: #2f81f7;
+                --accent-light: #1f2a3f;
+                --code-bg: #1f242b;
+                --code-border: #2d333b;
+                --success: #3fb950;
+                --warning: #d29922;
+                --danger: #f85149;
+                --danger-light: #2d1517;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+        }
+
+        h3 {
+            font-size: 1.25em;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .badge {
+            display: inline-block;
+            padding: 0.15em 0.5em;
+            font-size: 85%;
+            font-weight: 500;
+            border-radius: 6px;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            border: 1px solid var(--border-color);
+        }
+
+        .badge-warning {
+            background-color: rgba(210, 153, 34, 0.15);
+            color: var(--warning);
+        }
+
+        .badge-danger {
+            background-color: rgba(248, 81, 73, 0.15);
+            color: var(--danger);
+        }
+
+        .alert {
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--accent-light);
+            border-left: 6px solid var(--accent);
+        }
+
+        .alert-warning {
+            background-color: rgba(210, 153, 34, 0.1);
+            border-left-color: var(--warning);
+        }
+
+        .alert-danger {
+            background-color: var(--danger-light);
+            border-left-color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .alert-legal {
+            background-color: var(--danger-light);
+            border: 2px solid var(--danger);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(207, 34, 46, 0.2);
+        }
+
+            .alert-legal h3 {
+                margin-top: 0;
+                color: var(--danger);
+                font-size: 1.8em;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .alert-legal h3::before {
+                    content: "⚠️";
+                    font-size: 1.5em;
+                }
+
+            .alert-legal .legal-text {
+                font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+                background-color: var(--code-bg);
+                padding: 20px;
+                border-radius: 12px;
+                border: 1px solid var(--border-color);
+                margin: 15px 0;
+                white-space: pre-wrap;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+                .alert-legal .legal-text strong {
+                    color: var(--danger);
+                }
+
+        .endpoints {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .endpoint {
+            flex: 1 1 200px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background-color: var(--code-bg);
+            border: 1px solid var(--code-border);
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+            .endpoint strong {
+                color: var(--accent);
+                display: block;
+                margin-bottom: 4px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            }
+
+        pre {
+            margin: 16px 0;
+            padding: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--code-border);
+            background-color: var(--code-bg);
+        }
+
+        code {
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            font-size: 0.9em;
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            border: 1px solid var(--code-border);
+        }
+
+        pre code {
+            display: block;
+            padding: 16px;
+            overflow-x: auto;
+            line-height: 1.45;
+            background-color: var(--code-bg);
+            border: none;
+            tab-size: 4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+            .properties-table th,
+            .properties-table td {
+                padding: 12px 16px;
+                border: 1px solid var(--border-color);
+                text-align: left;
+                vertical-align: top;
+            }
+
+            .properties-table th {
+                background-color: var(--code-bg);
+                font-weight: 600;
+                width: 180px;
+            }
+
+            .properties-table td {
+                background-color: var(--bg-secondary);
+            }
+
+        .property-name {
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .property-type {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .hr {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 32px 0;
+        }
+
+        .links {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .link-card {
+            flex: 1 1 250px;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--code-bg);
+            transition: transform 0.2s;
+        }
+
+            .link-card:hover {
+                transform: translateY(-2px);
+                border-color: var(--accent);
+            }
+
+            .link-card h3 {
+                margin-top: 0;
+                margin-bottom: 8px;
+            }
+
+            .link-card p {
+                color: var(--text-secondary);
+                margin-bottom: 12px;
+            }
+
+            .link-card a {
+                font-weight: 500;
+            }
+
+        .version {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .method-post {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background-color: rgba(55, 128, 55, 0.15);
+            color: var(--success);
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .curl-example {
+            background-color: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .response-section {
+            margin-top: 32px;
+        }
+
+        .field-description {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        /* Стили для превью-карточки */
+        .preview-demo {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-secondary) 100%);
+        }
+
+            .preview-demo h4 {
+                margin-bottom: 15px;
+                color: var(--accent);
+            }
+
+        .preview-card {
+            display: flex;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 500px;
+            background-color: var(--bg-secondary);
+        }
+
+        .preview-image {
+            width: 120px;
+            background-color: var(--danger);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .preview-content {
+            padding: 15px;
+            flex: 1;
+        }
+
+        .preview-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .preview-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .preview-site {
+            font-size: 12px;
+            color: var(--accent);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div class="container">
+        <!-- Демонстрация превью -->
+        <div class="preview-demo">
+            <h4>🔍 Как будет выглядеть превью при отправке ссылки:</h4>
+            <div class="preview-card">
+                <div class="preview-image">⚠️</div>
+                <div class="preview-content">
+                    <div class="preview-title">Веб-сервис для проверки кодов маркировки | API v2</div>
+                    <div class="preview-description">⚠️ Тестовый сервис. Использование на свой риск. Документация API для проверки кодов маркировки Честный ЗНАК.</div>
+                    <div class="preview-site">ionson100.github.io/SolutionPiot</div>
+                </div>
+            </div>
+            <p style="margin-top: 10px; font-size: 14px; color: var(--text-secondary);">
+                ⚡ Telegram, WhatsApp, Viber, Facebook, Twitter будут отображать это превью с предупреждением
+            </p>
+        </div>
+
+        <!-- Блок с юридическим предупреждением -->
+        <div class="alert-legal">
+            <h3>🛑 ВНИМАНИЕ</h3>
+            <p><strong>Важное замечание:</strong> В связи с пунктом оферты:</p>
+
+            <div class="legal-text">
+                <strong>9.14.</strong> Пользователь признает и соглашается, что использование Программы осуществляется на<br>
+                его собственный риск. Все риски, в том числе связанные с производительностью, качеством и<br>
+                результатами использования Программы, лежат на Пользователе.<br><br>
+
+                Разработчик продукта на основе модуля ТС ПИоТ от ООО "ЕСП", не несет никакой ответственности<br>
+                за работу программы с этим модулем, в контексте проверки кодов маркировки и достоверности заполнения тэга 1265.<br>
+                Что в конечном итоге может вылиться в убытки предприятия в виде штрафов от налоговой службы или невозможности продажи.
+            </div>
+
+            <p style="font-weight: 600; color: var(--danger); margin-top: 15px;">
+                Используя данный сервис, вы принимаете все риски на себя!
+            </p>
+        </div>
+
+        <h1>
+            Веб-сервис для проверки кодов маркировки
+            <span class="version">API v2</span>
+        </h1>
+
+        <p>Создан в тестовых целях, для проверки кодов, которые выдаются при выполнении заданий. В дальнейшем планируется расширить функционал, добавив возможность сохранять результаты и предоставлять статистику по выполнению заданий.</p>
+
+        <p>Решение реализовано на <strong>ASP.NET Core Web API</strong>, использует <strong>Newtonsoft.Json</strong> для обработки JSON данных и <strong>Swagger</strong> для удобного тестирования API.</p>
+
+        <div class="alert">
+            <strong>🔄 Тестовый сервер:</strong>
+            <a href="https://esm-emu.ao-esp.ru/?mode=online&tab=general" target="_blank">https://esm-emu.ao-esp.ru/?mode=online&tab=general</a>
+        </div>
+
+        <div class="links">
+            <div class="link-card">
+                <h3>📘 GitHub</h3>
+                <p>Исходный код проекта</p>
+                <a href="https://github.com/ionson100/SolutionPiot" target="_blank">ionson100/SolutionPiot →</a>
+            </div>
+            <div class="link-card">
+                <h3>📊 Swagger</h3>
+                <p>Интерактивная документация API</p>
+                <a href="http://localhost:5253/swagger/index.html" target="_blank">localhost:5253/swagger →</a>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>⚠️ Внимание!</strong> Код в swagger должен вставляться полностью, включая группы разделителя <code>"0104607010350246215kRdG-1%W(Umn\u001d93dGVz"</code>
+        </div>
+
+        <h2>📡 Эндпоинты</h2>
+
+        <div class="endpoints">
+            <div class="endpoint">
+                <strong>POST /api/v2/check</strong>
+                <span class="method-post">POST</span>
+                <div>Проверка кодов маркировки</div>
+                <div style="font-size: 12px; margin-top: 8px;">http://localhost:5253/api/v2/check</div>
+            </div>
+        </div>
+
+        <h2>📦 Модели данных</h2>
+
+        <h3>CodeUnit <span class="badge">Request Body</span></h3>
+        <p>Элемент кода проверки. Тело POST запроса представляет список (List) объектов CodeUnit.</p>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Элемент кода проверки
+/// &lt;/summary&gt;
+public class CodeUnit
+{
+    /// &lt;summary&gt;
+    /// Код маркировки полный, с групповыми разделителями
+    /// &lt;/summary&gt;
+    public string Km { get; set; } = null!;
+    
+    /// &lt;summary&gt;
+    /// Цена за единицу продукта для группы 3, 15, 16 
+    /// (табачная, никотиносодержащая и альтернативная продукция), в копейках.
+    /// Для остальных групп товаров должно быть равно 0.
+    /// &lt;/summary&gt;
+    public int PriceTobaccoGroup { get; set; }
+}</code></pre>
+
+        <h3>MOut <span class="badge">Response Root</span></h3>
+        <p>Результат проверки запроса.</p>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Результат проверки
+/// &lt;/summary&gt;
+public class MOut
+{
+    public string? TotalErrorMessage { get; set; }
+    public List&lt;MOutItems&gt;? ItemsList { get; set; }
+    public JsonBodyV2 BodyV2 { get; set; } = null!;
+    public string LogString { get; set; } = null!;
+    public override string ToString()
+    public string GetStringForLog()
+}</code></pre>
+
+        <h3>MOutItems <span class="badge">Item Result</span></h3>
+        <p>Результат проверки кода маркировки. <strong>Внимание!</strong> Проверку лучше осуществлять по одному коду при добавлении в чек, при пакетной проверке модуль может вести себя непредсказуемо.</p>
+
+        <pre><code class="language-csharp">public class MOutItems : MInItems
+{
+    public int? CodeGroup { get; set; }
+    public bool PermitSale { get; set; }
+    public string? ErrorMessage { get; set; }
+    public string? Tag1265 { get; set; }
+    public double? MrcTobacco { get; set; }
+    public string GetStringForLog()
+}</code></pre>
+
+        <h3>JsonBodyV2 <span class="badge">PIOT Response Body</span></h3>
+        <p>Тело ответа от ПИоТ (Честный ЗНАК).</p>
+
+        <pre><code class="language-csharp">public class JsonBodyV2
+{
+    [JsonProperty("codesResponse")]
+    public List&lt;CodesResponse&gt;? CodesResponse { get; set; }
+    [JsonProperty("code")]
+    public int? Code { get; set; }
+    [JsonProperty("message")]
+    public string? Message { get; set; }
+}</code></pre>
+
+        <h3>CodesResponse <span class="badge">Batch Response</span></h3>
+        <p>Ответ по группе кодов от ПИоТ.</p>
+
+        <pre><code class="language-csharp">public class CodesResponse
+{
+    [JsonProperty("code")] public int Code { get; set; }
+    [JsonProperty("description")] public string? Description { get; set; }
+    [JsonProperty("codes")] public List&lt;ItemCode&gt;? Codes { get; set; }
+    [JsonProperty("reqId")] public string? ReqId { get; set; }
+    [JsonProperty("reqTimestamp")] public long ReqTimestamp { get; set; }
+    [JsonProperty("isCheckedOffline")] public bool IsCheckedOffline { get; set; }
+    [JsonProperty("inst")] public string? Inst { get; set; }
+    [JsonProperty("version")] public string? Version { get; set; }
+}</code></pre>
+
+        <h3>ItemCode <span class="badge">Detailed Code Info</span></h3>
+        <p>Модель данных кода маркировки (КИЗ) из ответа PIOT.</p>
+
+        <pre><code class="language-csharp">public class ItemCode
+{
+    [JsonProperty("cis")] public string? Cis { get; set; }
+    [JsonProperty("found")] public bool Found { get; set; }
+    [JsonProperty("valid")] public bool Valid { get; set; }
+    [JsonProperty("printView")] public string? PrintView { get; set; }
+    [JsonProperty("gtin")] public string? Gtin { get; set; }
+    [JsonProperty("groupIds")] public List&lt;int&gt; GroupIds { get; set; }
+    [JsonProperty("verified")] public bool Verified { get; set; }
+    [JsonProperty("realizable")] public bool Realizable { get; set; }
+    [JsonProperty("utilised")] public bool Utilised { get; set; }
+    [JsonProperty("expireDate")] public string? ExpireDate { get; set; }
+    [JsonProperty("variableExpirations")] public string? VariableExpirations { get; set; }
+    [JsonProperty("productionDate")] public string? ProductionDate { get; set; }
+    [JsonProperty("productWeight")] public int ProductWeight { get; set; }
+    [JsonProperty("prVetDocument")] public string? PrVetDocument { get; set; }
+    [JsonProperty("isOwner")] public bool IsOwner { get; set; }
+    [JsonProperty("isBlocked")] public bool IsBlocked { get; set; }
+    [JsonProperty("ogvs")] public List&lt;string&gt;? Ogvs { get; set; }
+    [JsonProperty("errorCode")] public int ErrorCode { get; set; }
+    [JsonProperty("isTracking")] public bool IsTracking { get; set; }
+    [JsonProperty("sold")] public bool Sold { get; set; }
+    [JsonProperty("eliminationState")] public int EliminationState { get; set; }
+    [JsonProperty("mrp")] public double? Mrp { get; set; }
+    [JsonProperty("smp")] public int? Smp { get; set; }
+    [JsonProperty("grayZone")] public bool GrayZone { get; set; }
+    [JsonProperty("innerUnitCount")] public int InnerUnitCount { get; set; }
+    [JsonProperty("soldUnitCount")] public int SoldUnitCount { get; set; }
+    [JsonProperty("packageType")] public string? PackageType { get; set; }
+    [JsonProperty("parent")] public string? Parent { get; set; }
+    [JsonProperty("producerInn")] public string? ProducerInn { get; set; }
+    [JsonProperty("productionSerialNumber")] public string? ProductionSerialNumber { get; set; }
+    [JsonProperty("productionBatchNumber")] public string? ProductionBatchNumber { get; set; }
+    [JsonProperty("factorySerialNumber")] public string? FactorySerialNumber { get; set; }
+    [JsonProperty("packageQuantity")] public int PackageQuantity { get; set; }
+}</code></pre>
+
+        <h3>📋 Коды ошибок ItemCode</h3>
+
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Код</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Ошибка валидации КМ</td></tr>
+                <tr><td>2</td><td>КМ не содержит GTIN</td></tr>
+                <tr><td>3</td><td>КМ не содержит серийный номер</td></tr>
+                <tr><td>4</td><td>КМ содержит недопустимые символы</td></tr>
+                <tr><td>5</td><td>Ошибка верификации крипто-подписи КМ (формат крипто-подписи не соответствует типу КМ)</td></tr>
+                <tr><td>6</td><td>Ошибка верификации крипто-подписи КМ (криптоподпись невалидная)</td></tr>
+                <tr><td>7</td><td>Ошибка верификации крипто-подписи КМ (крипто-ключ не валиден)</td></tr>
+                <tr><td>8</td><td>КМ не прошел верификацию в стране эмитента</td></tr>
+                <tr><td>9</td><td>Найденные AI в КМ не поддерживаются</td></tr>
+                <tr><td>10</td><td>КМ не найден в ГИС МТ</td></tr>
+                <tr><td>11</td><td>КМ не найден в трансгране</td></tr>
+            </tbody>
+        </table>
+
+        <h2>📝 Пример запроса (curl)</h2>
+
+        <div class="curl-example">
+            <pre><code class="language-bash">curl --location 'http://localhost:5253/api/v2/check' \
+--header 'Content-Type: application/json' \
+--data '[
+  {
+    "km": "00840147505712Zz;ZnRbAAAAdGVz",
+    "priceTobaccoGroup": 15000
+  }
+]'</code></pre>
+        </div>
+
+        <h2>📥 Пример ответа</h2>
+
+        <pre><code class="language-json">{
+  "totalErrorMessage": null,
+  "itemsList": [
+    {
+      "codeGroup": 16,
+      "permitSale": false,
+      "errorMessage": "Цена единицы товара: 150,00 руб. меньше допустимой минимальной цены: 200,00 руб.",
+      "tag1265": "UUID=f7b51a1b-75f0-4c3b-8843-52daa4765dea&Time=1773524146442",
+      "mrcTobacco": 150,
+      "km": "00840147505712Zz;ZnRbAAAAdGVz",
+      "idCase": "5.26",
+      "descriptionCase": "Запрет продажи НСП по минимальной розничной цене"
+    }
+  ],
+  "bodyV2": {
+    "codesResponse": [
+      {
+        "code": 0,
+        "description": "ok",
+        "codes": [
+          {
+            "cis": "00840147505712Zz;ZnRbAAAAdGVz",
+            "found": true,
+            "valid": true,
+            "printView": "00840147505712Zz;ZnRb",
+            "gtin": "00840147505712",
+            "groupIds": [
+              16
+            ],
+            "verified": true,
+            "realizable": true,
+            "utilised": true,
+            "expireDate": null,
+            "variableExpirations": null,
+            "productionDate": "2025-09-18T00:00:00.000Z",
+            "productWeight": 0,
+            "prVetDocument": null,
+            "isOwner": true,
+            "isBlocked": false,
+            "ogvs": null,
+            "errorCode": 0,
+            "isTracking": false,
+            "sold": false,
+            "eliminationState": 0,
+            "mrp": 20000,
+            "smp": null,
+            "grayZone": false,
+            "innerUnitCount": 0,
+            "soldUnitCount": 0,
+            "packageType": "UNIT",
+            "parent": null,
+            "producerInn": "7731376812",
+            "productionSerialNumber": null,
+            "productionBatchNumber": null,
+            "factorySerialNumber": null,
+            "packageQuantity": 0
+          }
+        ],
+        "reqId": "f7b51a1b-75f0-4c3b-8843-52daa4765dea",
+        "reqTimestamp": 1773524146442,
+        "isCheckedOffline": false,
+        "inst": null,
+        "version": null
+      }
+    ],
+    "code": null,
+    "message": null
+  },
+  "logString": "\n  ************** Проверка кодов с помощью ТС ПИоТ **************\n  Список проверяемых кодов:\n  00840147505712Zz;ZnRbAAAAdGVz [MDA4NDAxNDc1MDU3MTJaejtablJiQUFBQWRHVno=]\n  URL TC РИоТ: https://esm-emu.ao-esp.ru/api/v2/codes/check\n  Тело запроса:\n  {\"codes\":[\"MDA4NDAxNDc1MDU3MTJaejtablJiQUFBQWRHVno=\"],\"client_info\":{\"name\":\"bitnic\",\"version\":\"0.0.1\",\"id\":\"18aa4ecf-523c-4c2a-a759-d0435f4 \",\"token\":\"18aa4ecf-523c-4c2a-a759-d0435f4c0408\"}}\n  Http code: 200\n  Тело ответа:\n  {\"codesResponse\":[{\"code\":0,\"description\":\"ok\",\"codes\":[{\"cis\":\"00840147505712Zz;ZnRbAAAAdGVz\",\"found\":true,\"valid\":true,\"printView\":\"00840147505712Zz;ZnRb\",\"gtin\":\"00840147505712\",\"groupIds\":[16],\"verified\":true,\"realizable\":true,\"utilised\":true,\"productionDate\":\"2025-09-18T00:00:00.000Z\",\"isOwner\":true,\"isBlocked\":false,\"errorCode\":0,\"isTracking\":false,\"sold\":false,\"mrp\":20000,\"grayZone\":false,\"packageType\":\"UNIT\",\"producerInn\":\"7731376812\"}],\"reqId\":\"f7b51a1b-75f0-4c3b-8843-52daa4765dea\",\"reqTimestamp\":1773524146442,\"isCheckedOffline\":false}]}\r\nКода были проверены online.\n  Результат проверки кодов:\n  Код: 00840147505712Zz;ZnRbAAAAdGVz\n  Продажа: запретить\n  Причина: Цена единицы товара: 150,00 руб. меньше допустимой минимальной цены: 200,00 руб.\n  Цена за единицу руб.: 150,00\n  Код группы: 16\n  Тэг 1265: UUID=f7b51a1b-75f0-4c3b-8843-52daa4765dea&Time=1773524146442\n  Тест: 5.26\n  Описание теста: Запрет продажи НСП по минимальной розничной цене"
+}</code></pre>
+
+        <div class="hr"></div>
+
+        <div class="alert alert-danger">
+            <strong>⚠️ Важные замечания:</strong>
+            <ul style="margin-top: 8px; margin-left: 20px;">
+                <li>При пакетной проверке модуль может вести себя непредсказуемо — рекомендуется проверять по одному коду при добавлении в чек</li>
+                <li>Код в Swagger должен вставляться полностью, включая группы разделителя</li>
+                <li>Цена PriceTobaccoGroup указывается в копейках только для групп 3, 15, 16</li>
+                <li>При офлайн проверке (isCheckedOffline = true) необходимо ориентироваться на поле isBlocked</li>
+                <li>В логе ответа отображается полная информация о запросе к ТС ПИоТ и результате проверки</li>
+                <li><strong>Юридическая ответственность:</strong> Использование сервиса осуществляется на свой риск согласно п. 9.14 оферты</li>
+            </ul>
+        </div>
+
+        <p style="text-align: center; color: var(--text-secondary); margin-top: 40px;">
+            Документация подготовлена на основе исходного кода API v2<br>
+            Актуально на 14 марта 2026 года
+        </p>
+    </div>
+</body>
+</html>

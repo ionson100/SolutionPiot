@@ -16,12 +16,12 @@ public class MOut
     public string? TotalErrorMessage { get; set; }
 
     /// <summary>
-    /// Список результатов проверки.
+    /// Список результатов проверки, по кодам в запросе
     /// </summary>
     public List<MOutItems>? ItemsList { get; set; }
 
     /// <summary>
-    /// Тело ответа в формате v2.
+    /// Тело ответа в формате JsonBodyV2.
     /// </summary>
     public JsonBodyV2 BodyV2 { get; set; } = null!;
 
@@ -43,6 +43,9 @@ public class MOut
         TotalErrorMessage = errorMessage;
     }
 
+    /// <summary>
+    /// Лог проверки, для записи в лог файл, удобно при сертификации программы
+    /// </summary>
     public string LogString { get; set; } = null!;
 
     /// <summary>
@@ -54,7 +57,7 @@ public class MOut
     }
 
     /// <summary>
-    /// Формирует многострочный лог с результатами проверки.
+    /// Формирует много строчный лог с результатами проверки.
     /// </summary>
     public string GetStringForLog()
     {
