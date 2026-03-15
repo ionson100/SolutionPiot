@@ -96,4 +96,6 @@ public class MySettings
     public string Authorization { get; set; } = "Basic Base64(name:password)";   
 }
 ```
-          
+
+           
+        

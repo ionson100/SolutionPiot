@@ -36,8 +36,8 @@ public class CodeCheck(ILogger<CodeCheck> logger, IOptions<MySettings> options) 
             
             //codesList = new List<CodeUnit>() { new() { Km = "0104670540176099215'W9Um\u001d93dGVz" } };
             //codesList = new List<CodeUnit>() { new() { Km = "010461013628057121/798DM%\u001d8005199000\u001d93dGVz" } };
-            codesList = new List<CodeUnit>() { new() { Km = "00840147505712Zz;ZnRbAAAAdGVz",PriceTobaccoGroup = 15000} };
-            //codesList = new List<CodeUnit>() { new() { Km = "0104607010350246215kRdG-1%W(Umn\u001d93dGVz", PriceTobaccoGroup = 15000 } };
+            //codesList = new List<CodeUnit>() { new() { Km = "00840147505712Zz;ZnRbAAAAdGVz",PriceTobaccoGroup = 15000} };
+            codesList = new List<CodeUnit>() { new() { Km = "0104670540176099215<pGKy\u001D93dGVz", PriceTobaccoGroup = 15000 } };
             //return new MOut("Список кодов пустой");
         }
 

@@ -58,6 +58,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseDefaultFiles(); // ищет index.html, default.html и т.д.
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
