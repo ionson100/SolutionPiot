@@ -17,7 +17,7 @@
 Решение реализовано на ASP.NET Core Web API, использует Newtonsoft.Json для обработки JSON данных и Swagger для удобного тестирования API.\
 Для тестирования кодов:```https://esm-emu.ao-esp.ru/?mode=online&tab=general ```
 [gitHub](https://github.com/ionson100/SolutionPiot) \
-Для ручной проверки кодов, можно использовать :[sawagger](http://localhost:5253/swagger/index.html)
+Для ручной проверки кодов, можно использовать :[sawagger](https://map23.ru/swagger/index.html)
 Внимание!\
 Код в swagger должен вставляться полностьтю, включая группы разделителя ```"0104607010350246215kRdG-1%W(Umn\u001d93dGVz"```\
 Тело POST запроса предствляет список (List) объектов ```CodeUnit``` 
@@ -37,7 +37,7 @@ public class CodeUnit
     public int PriceTobaccoGroup { get; set; }
 }
 ```
-Адрес запроса: ```http://localhost:5253/api/v2/check ``` \
+Адрес запроса: ```https://map23.ru/api/v2/check ``` \
 Ответ:
 ```csharp
 /// <summary>
@@ -475,7 +475,7 @@ public class ItemCode
 #### Пример запроса
 
 ```
-curl --location 'http://localhost:5253/api/v2/check' \
+curl --location 'https://map23.ru/api/v2/check' \
 --header 'Content-Type: application/json' \
 --data '[
   {
