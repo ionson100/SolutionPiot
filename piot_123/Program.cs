@@ -19,23 +19,21 @@ builder.Services.AddSwaggerGen(options =>
     // Настраиваем информацию об API (необязательно, но полезно)
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Your API Title",
-        Version = "v1",
-        Description = "Description of your API."
+        Title = "API ТС ПИоТ",
+        Version = "v2",
+        Description = "Проверка кода маркировки."
     });
-
     // --- ВАЖНАЯ ЧАСТЬ: Подключаем XML-комментарии ---
     // Получаем имя исполняемой сборки (вашего проекта)
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     // Строим полный путь к файлу. Файл будет лежать в той же папке, что и собранная DLL.
     var xmlPath = Path.Combine(AppContext.BaseDirectory, "piotdll.xml");
 
     // Этот метод заставляет Swagger читать комментарии из XML
-    options.IncludeXmlComments(xmlPath);
-
+    options.IncludeXmlComments(xmlPath,true);
     // Второй параметр (true) включает комментарии для контроллеров, если вы их тоже добавите
-    // options.IncludeXmlComments(xmlPath, true); 
 });
+
 
 // Настройка Serilog
 builder.Host.UseSerilog((context, config) =>
@@ -44,11 +42,7 @@ builder.Host.UseSerilog((context, config) =>
 });
 
 
-
-
-
-
-// Добавляем внешний файл конфигурации (будет смонтирован в Docker)
+// Добавляем внешний файл конфигурации (будет смонтирован в Docker если вы не передадите тома в параметрах запуска)
 builder.Configuration.AddJsonFile("piot/settings.json", optional: true, reloadOnChange: true);
 
 // Переменные окружения переопределяют значения из файлов
@@ -57,39 +51,24 @@ builder.Configuration.AddEnvironmentVariables();
 // Регистрируем сервис
 builder.Services.Configure<MySettings>(builder.Configuration.GetSection("MySettings"));
 
-
-builder.Services.AddHttpClient();
-
-
-
-
-
+//builder.Services.AddHttpClient();
 
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
-
-
-
-
-
-
-
-
-
-
-
+app.UseDefaultFiles(); // ищет index.html, default.html и т.д.
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

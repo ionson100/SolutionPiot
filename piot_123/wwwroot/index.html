@@ -1,0 +1,1713 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Основные мета-теги -->
+    <title>Веб-сервис для проверки кодов маркировки | API v2</title>
+    <meta name="description" content="Тестовый веб-сервис для проверки кодов маркировки Честный ЗНАК. API v2, ASP.NET Core, Swagger, документация с примерами.">
+    <meta name="keywords" content="Честный ЗНАК, маркировка, проверка кодов, API, PIOT, ASP.NET Core, Swagger">
+    <meta name="author" content="ionson100">
+
+    <!-- Open Graph / Facebook / ВКонтакте -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ionson100.github.io/SolutionPiot/">
+    <meta property="og:title" content="Веб-сервис для проверки кодов маркировки | API v2">
+    <meta property="og:description" content="⚠️ Тестовый сервис. Использование на свой риск. Документация API для проверки кодов маркировки Честный ЗНАК.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/cf222e/ffffff?text=⚠️+Ответственность+на+пользователе">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Предупреждение об ответственности">
+    <meta property="og:site_name" content="SolutionPiot Docs">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ionson100">
+    <meta name="twitter:creator" content="@ionson100">
+    <meta name="twitter:title" content="Веб-сервис для проверки кодов маркировки | API v2">
+    <meta name="twitter:description" content="⚠️ Тестовый сервис. Использование на свой риск. Документация API для проверки кодов маркировки.">
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x600/cf222e/ffffff?text=⚠️+Ответственность+на+пользователе">
+    <meta name="twitter:image:alt" content="Предупреждение об ответственности">
+
+    <!-- Telegram / Viber / WhatsApp -->
+    <meta property="telegram:channel" content="@ionson100">
+    <meta property="og:telegram:image" content="https://via.placeholder.com/1200x630/cf222e/ffffff?text=⚠️+API+v2">
+
+    <!-- Дополнительные мета-теги -->
+    <meta name="theme-color" content="#cf222e">
+    <meta name="msapplication-TileColor" content="#cf222e">
+
+    <!-- Favicon с предупреждением -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23cf222e'/%3E%3Ctext x='30' y='70' font-size='60' fill='white' font-weight='bold'%3E!%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23cf222e'/%3E%3Ctext x='30' y='70' font-size='60' fill='white' font-weight='bold'%3E!%3C/text%3E%3C/svg%3E">
+
+    <style>
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --text-primary: #24292e;
+            --text-secondary: #57606a;
+            --border-color: #d0d7de;
+            --accent: #0969da;
+            --accent-light: #e7f3ff;
+            --code-bg: #f6f8fa;
+            --code-border: #eaeef2;
+            --success: #1a7f37;
+            --warning: #9a6700;
+            --danger: #cf222e;
+            --danger-light: #ffebe9;
+            --copy-hover: #e1e9f0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0d1117;
+                --bg-secondary: #161b22;
+                --text-primary: #e6edf3;
+                --text-secondary: #8b949e;
+                --border-color: #30363d;
+                --accent: #2f81f7;
+                --accent-light: #1f2a3f;
+                --code-bg: #1f242b;
+                --code-border: #2d333b;
+                --success: #3fb950;
+                --warning: #d29922;
+                --danger: #f85149;
+                --danger-light: #2d1517;
+                --copy-hover: #2d333b;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3, h4 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+        }
+
+        h3 {
+            font-size: 1.25em;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .badge {
+            display: inline-block;
+            padding: 0.15em 0.5em;
+            font-size: 85%;
+            font-weight: 500;
+            border-radius: 6px;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            border: 1px solid var(--border-color);
+        }
+
+        .badge-warning {
+            background-color: rgba(210, 153, 34, 0.15);
+            color: var(--warning);
+        }
+
+        .badge-danger {
+            background-color: rgba(248, 81, 73, 0.15);
+            color: var(--danger);
+        }
+
+        .alert {
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--accent-light);
+            border-left: 6px solid var(--accent);
+        }
+
+        .alert-warning {
+            background-color: rgba(210, 153, 34, 0.1);
+            border-left-color: var(--warning);
+        }
+
+        .alert-danger {
+            background-color: var(--danger-light);
+            border-left-color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .alert-legal {
+            background-color: var(--danger-light);
+            border: 2px solid var(--danger);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(207, 34, 46, 0.2);
+        }
+
+            .alert-legal h3 {
+                margin-top: 0;
+                color: var(--danger);
+                font-size: 1.8em;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .alert-legal h3::before {
+                    content: "⚠️";
+                    font-size: 1.5em;
+                }
+
+            .alert-legal .legal-text {
+                font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+                background-color: var(--code-bg);
+                padding: 20px;
+                border-radius: 12px;
+                border: 1px solid var(--border-color);
+                margin: 15px 0;
+                white-space: pre-wrap;
+                font-size: 14px;
+                line-height: 1.0;
+            }
+
+                .alert-legal .legal-text strong {
+                    color: var(--danger);
+                }
+
+        .endpoints {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .endpoint {
+            flex: 1 1 200px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background-color: var(--code-bg);
+            border: 1px solid var(--code-border);
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+            .endpoint strong {
+                color: var(--accent);
+                display: block;
+                margin-bottom: 4px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            }
+
+        pre {
+            margin: 16px 0;
+            padding: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--code-border);
+            background-color: var(--code-bg);
+        }
+
+        code {
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            font-size: 0.9em;
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            border: 1px solid var(--code-border);
+        }
+
+        pre code {
+            display: block;
+            padding: 16px;
+            overflow-x: auto;
+            line-height: 1.45;
+            background-color: var(--code-bg);
+            border: none;
+            tab-size: 4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+            .properties-table th,
+            .properties-table td {
+                padding: 12px 16px;
+                border: 1px solid var(--border-color);
+                text-align: left;
+                vertical-align: top;
+            }
+
+            .properties-table th {
+                background-color: var(--code-bg);
+                font-weight: 600;
+                width: 180px;
+            }
+
+            .properties-table td {
+                background-color: var(--bg-secondary);
+            }
+
+        .property-name {
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .property-type {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .hr {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 32px 0;
+        }
+
+        .links {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .link-card {
+            flex: 1 1 250px;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--code-bg);
+            transition: transform 0.2s;
+        }
+
+            .link-card:hover {
+                transform: translateY(-2px);
+                border-color: var(--accent);
+            }
+
+            .link-card h3 {
+                margin-top: 0;
+                margin-bottom: 8px;
+            }
+
+            .link-card p {
+                color: var(--text-secondary);
+                margin-bottom: 12px;
+            }
+
+            .link-card a {
+                font-weight: 500;
+            }
+
+        .version {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .method-post {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background-color: rgba(55, 128, 55, 0.15);
+            color: var(--success);
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .curl-example {
+            background-color: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .response-section {
+            margin-top: 32px;
+        }
+
+        .field-description {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        /* Стили для превью-карточки */
+        .preview-demo {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-secondary) 100%);
+        }
+
+            .preview-demo h4 {
+                margin-bottom: 15px;
+                color: var(--accent);
+            }
+
+        .preview-card {
+            display: flex;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 500px;
+            background-color: var(--bg-secondary);
+        }
+
+        .preview-image {
+            width: 120px;
+            background-color: var(--danger);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .preview-content {
+            padding: 15px;
+            flex: 1;
+        }
+
+        .preview-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .preview-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .preview-site {
+            font-size: 12px;
+            color: var(--accent);
+        }
+
+        /* Стили для таблицы тестовых кодов */
+        .test-codes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+            .test-codes-table th {
+                background-color: var(--code-bg);
+                font-weight: 600;
+                padding: 15px;
+                text-align: left;
+                border-bottom: 2px solid var(--border-color);
+            }
+
+            .test-codes-table td {
+                padding: 12px 15px;
+                border-bottom: 1px solid var(--border-color);
+                vertical-align: middle;
+            }
+
+            .test-codes-table tr:last-child td {
+                border-bottom: none;
+            }
+
+            .test-codes-table tr:hover {
+                background-color: var(--accent-light);
+            }
+
+        .code-cell {
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            background-color: var(--code-bg);
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--code-border);
+            word-break: break-all;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .code-cell:hover {
+                background-color: var(--copy-hover);
+                border-color: var(--accent);
+            }
+
+            .code-cell:active {
+                transform: scale(0.98);
+            }
+
+            .code-cell.copied {
+                background-color: var(--success);
+                color: white;
+                border-color: var(--success);
+            }
+
+        .copy-indicator {
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .code-cell:hover .copy-indicator {
+            color: var(--accent);
+        }
+
+        .code-cell.copied .copy-indicator {
+            color: white;
+        }
+
+        .case-cell {
+            font-weight: 600;
+            text-align: center;
+            background-color: var(--accent-light);
+            border-radius: 20px;
+            padding: 4px 12px;
+            display: inline-block;
+            color: var(--accent);
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-message.fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .json-preview {
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            background-color: var(--code-bg);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.9em;
+            color: var(--accent);
+        }
+
+        .comment {
+            color: #6a9955;
+            font-style: italic;
+            font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .property-doc {
+            background-color: var(--code-bg);
+            border-left: 3px solid var(--accent);
+            padding: 8px 12px;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9em;
+        }
+
+            .property-doc strong {
+                color: var(--accent);
+            }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .property-item {
+            border-bottom: 1px dashed var(--border-color);
+            padding: 8px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div class="container">
+        
+
+        <!-- Блок с юридическим предупреждением -->
+        <div class="alert-legal">
+            <h3>🛑 ВНИМАНИЕ</h3>
+            <p><strong>Важное замечание:</strong> В связи с пунктом оферты:</p>
+
+            <div class="legal-text">
+                <strong>9.14.</strong> Пользователь признает и соглашается, что использование Программы осуществляется на<br>
+                его собственный риск. Все риски, в том числе связанные с производительностью, качеством и<br>
+                результатами использования Программы, лежат на Пользователе.<br><br>
+
+                Разработчик продукта на основе модуля ТС ПИоТ от ООО "ЕСП", не несет никакой ответственности<br>
+                за работу программы с этим модулем, в контексте проверки кодов маркировки и достоверности заполнения тэга 1265.<br>
+                Что в конечном итоге может вылиться в убытки предприятия в виде штрафов от налоговой службы или невозможности продажи.
+            </div>
+
+            <p style="font-weight: 600; color: var(--danger); margin-top: 15px;">
+                Используя данный сервис, вы принимаете все риски на себя!
+            </p>
+        </div>
+
+        <h1>
+            Веб-сервис для проверки кодов маркировки
+            <span class="version">API v2</span>
+        </h1>
+
+        <p>Создан в тестовых целях, для проверки кодов, которые выдаются при выполнении заданий. В дальнейшем планируется расширить функционал, добавив возможность сохранять результаты и предоставлять статистику по выполнению заданий.</p>
+
+        <p>Решение реализовано на <strong>ASP.NET Core Web API</strong>, использует <strong>Newtonsoft.Json</strong> для обработки JSON данных и <strong>Swagger</strong> для удобного тестирования API.</p>
+
+        <div class="alert">
+            <strong>🔄 Тестовый сервер:</strong>
+            <a href="https://esm-emu.ao-esp.ru/?mode=online&tab=general" target="_blank">https://esm-emu.ao-esp.ru/?mode=online&tab=general</a>
+        </div>
+
+        <div class="links">
+            <div class="link-card">
+                <h3>📘 GitHub</h3>
+                <p>Исходный код проекта</p>
+                <a href="https://github.com/ionson100/SolutionPiot" target="_blank">ionson100/SolutionPiot →</a>
+            </div>
+            <div class="link-card">
+                <h3>📊 Swagger</h3>
+                <p>Интерактивная документация API</p>
+                <a href="https://map23.ru//swagger/index.html" target="_blank">map23/swagger →</a>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>⚠️ Внимание!</strong> Код в swagger должен вставляться полностью, включая группы разделителя <code>"0104607010350246215kRdG-1%W(Umn\u001d93dGVz"</code>
+        </div>
+
+        <h2>📡 Эндпоинты</h2>
+
+        <div class="endpoints">
+            <div class="endpoint">
+                <strong>POST /api/v2/check</strong>
+                <span class="method-post">POST</span>
+                <div>Проверка кодов маркировки</div>
+                <div style="font-size: 12px; margin-top: 8px;">https://map23.ru/api/v2/check</div>
+            </div>
+        </div>
+
+        <h2>📋 Тестовые коды</h2>
+        <p>Кликните на любой код, чтобы скопировать его в буфер обмена в формате JSON-строки <span class="json-preview">"код"</span> 👇</p>
+
+        <div class="table-container">
+            <table class="test-codes-table">
+                <thead>
+                    <tr>
+                        <th>Код маркировки</th>
+                        <th style="text-align: center;">Кейс</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104670540176099215\'W9Um\u001d93dGVz')"><span>0104670540176099215'W9Um\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.1</strong></span></td>
+                        <td>Запрет продажи товара при отсутствии в информационной системе мониторинга сведений о его нанесении</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104670540176099215LnOjv\u001d93dGVz')"><span>0104670540176099215LnOjv\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.2</strong></span></td>
+                        <td>Запрет продажи товара при отсутствии в информационной системе мониторинга сведений о его вводе в оборот</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '010462930887704421DzkcYt2\u001d8005090000\u001d93dGVz')"><span>010462930887704421DzkcYt2\u001d8005090000\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.3</strong></span></td>
+                        <td>Успешная продажа табачной продукции (цена до 100 руб. за пачку для прохождения на МГМ)</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '010462930887704421DzkcWqS\u001d8005177000\u001d93dGVz')"><span>010462930887704421DzkcWqS\u001d8005177000\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.4</strong></span></td>
+                        <td>Успешная продажа табачной продукции (цена более 135 руб. за пачку для соблюдения законодательства РФ), потребительская или групповая упаковка которых относится к временно не прослеживаемой (т.н. «серая зона»)</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104670540176099215NN*cM\u001d93dGVz')"><span>0104670540176099215NN*cM\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.5</strong></span></td>
+                        <td>Запрет продажи товара, который на момент проверки выведен из оборота</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104602220006549215opFcmK\u001d93dGVz')"><span>0104602220006549215opFcmK\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.6</strong></span></td>
+                        <td>Запрет продажи товара, заблокированного или приостановленного для реализации по решению органов власти</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104670540176099215<pGKy\u001d93dGVz')"><span>0104670540176099215&lt;pGKy\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.7</strong></span></td>
+                        <td>Продажа товара с истекшим сроком годности</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '010461013628057121%798DM%\u001d8005090000\u001d93dGVz')"><span>010461013628057121%798DM%\u001d8005090000\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.8</strong></span></td>
+                        <td>Успешная продажа блока сигарет (папирос) по максимальной розничной цене (цена до 100 руб. за пачку для прохождения на МГМ), указанной в коде маркировки</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '010461013628057121%008iVk\u001d8005180000\u001d93dGVz')"><span>010461013628057121%008iVk\u001d8005180000\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.9</strong></span></td>
+                        <td>Успешная продажа блока сигарет (папирос) по максимальной розничной цене (цена более 135 руб. за пачку для соблюдения законодательства РФ), указанной в коде маркировки</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '04601653035829H;dV)bFABVUdGVz')"><span>04601653035829H;dV)bFABVUdGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.10</strong></span></td>
+                        <td>Продажа пачки сигарет (папирос) по максимальной розничной цене (цена до 100 руб. за пачку для прохождения на МГМ), указанной в коде маркировки</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '04601653035829H;dV)bFACVUdGVz')"><span>04601653035829H;dV)bFACVUdGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.11</strong></span></td>
+                        <td>Продажа пачки сигарет (папирос) по максимальной розничной цене (цена более 135 руб. за пачку для соблюдения законодательства РФ), указанной в коде маркировки</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '04601653035829H;vE)bFABBUdGVz')"><span>04601653035829H;vE)bFABBUdGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.12</strong></span></td>
+                        <td>Продажа товара, сведения о маркировке средствами идентификации которого отсутствуют в информационной системе мониторинга</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104670540176099215<pGKy\u001d93DGVz')"><span>0104670540176099215&lt;pGKy\u001d93DGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.14</strong></span></td>
+                        <td>Запрет продажи товара с некорректным кодом проверки</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104607010350246215kRdG-1%2(UmV\u001d93dGVz')"><span>0104607010350246215kRdG-1%2(UmV\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.17</strong></span></td>
+                        <td>Продажа товара в режиме офлайн, отсутствующего в черном списке ЛМ ЧЗ</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104607010350246215kRdG-1%W(Umn\u001d93dGVz')"><span>0104607010350246215kRdG-1%W(Umn\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.18</strong></span></td>
+                        <td>Продажа товара в режиме проверки офлайн отсутствующего в черном списке ЛМ ЧЗ (ответ от ГИС МТ 5 секунд)</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104602220006549215opRcmR\u001d93dGVz')"><span>0104602220006549215opRcmR\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.19</strong></span></td>
+                        <td>Запрет продажи товара в режиме проверки офлайн, присутствующего в черном списке ЛМ ЧЗ</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104607010350246215kRdG-X%W(Rnb\u001d93dGVz')"><span>0104607010350246215kRdG-X%W(Rnb\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.20</strong></span></td>
+                        <td>Запрет продажи товара в режиме проверки офлайн, присутствующего в черном списке ЛМ ЧЗ (ответ от ГИС МТ 5 секунд)</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0104670540176099215LpGKy\u001d93dGVz')"><span>0104670540176099215LpGKy\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.21</strong></span></td>
+                        <td>Сканирование кода маркировки, который возвращает 203 - ошибку и переводит ТС ПИоТ в аварийный режим</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '01046700190342882151aj|K>X+mFcP\u001d93dGVz')"><span>01046700190342882151aj|K>X+mFcP\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.22</strong></span></td>
+                        <td>Запрет продажи товара, когда РД признан прекращенным или недействительным по решению государственного органа контроля (надзора) за соблюдением требований технических регламентов</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '0108607405401894215cC3O4\u001d93dGVz')"><span>0108607405401894215cC3O4\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.23</strong></span></td>
+                        <td>Запрет продажи товара при аннулированном ВСД</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '04601653035829H;dV)bFADI8dGVz')"><span>04601653035829H;dV)bFADI8dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.24</strong></span></td>
+                        <td>Запрет продажи пачки сигарет (папирос) по минимальной розничной цене</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '010461013628057121/798DM%\u001d8005199000\u001d93dGVz')"><span>010461013628057121/798DM%\u001d8005199000\u001d93dGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.25</strong></span></td>
+                        <td>Запрет продажи блока сигарет (папирос) по минимальной розничной цене</td>
+                    </tr>
+                    <tr>
+                        <td><div class="code-cell" onclick="copyToClipboard(this, '00840147505712Zz;ZnRbAAAAdGVz')"><span>00840147505712Zz;ZnRbAAAAdGVz</span><span class="copy-indicator">📋 копировать как JSON</span></div></td>
+                        <td style="text-align: center;"><span class="case-cell"><strong>5.26</strong></span></td>
+                        <td>Запрет продажи НСП по минимальной розничной цене</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>📦 Модели данных</h2>
+
+        <h3>CodeUnit <span class="badge">Request Body</span></h3>
+        <p>Элемент кода проверки. Тело POST запроса представляет список (List) объектов CodeUnit.</p>
+
+        <div class="property-doc">
+            <strong>📋 Свойства:</strong>
+            <div class="property-grid">
+                <div><code class="property-name">Km</code> <span class="property-type">string</span></div>
+                <div>Код маркировки полный, с групповыми разделителями. Обязательное поле.</div>
+
+                <div><code class="property-name">PriceTobaccoGroup</code> <span class="property-type">int</span></div>
+                <div>Цена за единицу продукта для группы 3, 15, 16 (табачная, никотиносодержащая и альтернативная продукция), в копейках. Для остальных групп товаров должно быть равно 0.</div>
+            </div>
+        </div>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Элемент кода проверки
+/// &lt;/summary&gt;
+public class CodeUnit
+{
+    /// &lt;summary&gt;
+    /// Код маркировки полный, с групповыми разделителями
+    /// &lt;/summary&gt;
+    public string Km { get; set; } = null!;
+    
+    // Цена за единицу продукта для группы 3, 15, 16 
+    // (табачная, никотиносодержащая и альтернативная продукция), в копейках.) из локальной базы данных. 
+    // Для остальных групп товаров должно быть равно 0.
+    public int PriceTobaccoGroup { get; set; }
+}</code></pre>
+
+        <h3>MOut <span class="badge">Response Root</span></h3>
+        <p>Результат проверки запроса.</p>
+
+        <div class="property-doc">
+            <strong>📋 Свойства:</strong>
+            <div class="property-grid">
+                <div><code class="property-name">TotalErrorMessage</code> <span class="property-type">string?</span></div>
+                <div>Глобальное сообщение об ошибке, возникшей при выполнении запроса. Если это поле не null — значит проверка не прошла.</div>
+
+                <div><code class="property-name">ItemsList</code> <span class="property-type">List&lt;MOutItems&gt;?</span></div>
+                <div>Список результатов проверки, по кодам в запросе.</div>
+
+                <div><code class="property-name">BodyV2</code> <span class="property-type">JsonBodyV2</span></div>
+                <div>Тело ответа в формате JsonBodyV2.</div>
+
+                <div><code class="property-name">LogString</code> <span class="property-type">string</span></div>
+                <div>Лог проверки, для записи в лог файл, удобно при сертификации программы.</div>
+            </div>
+        </div>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Результат проверки
+/// &lt;/summary&gt;
+public class MOut
+{
+    /// &lt;summary&gt;
+    /// Глобальное сообщение об ошибке, возникшей при выполнении запроса:
+    /// Если это поле не null — значит проверка не прошла
+    /// &lt;/summary&gt;
+    public string? TotalErrorMessage { get; set; }
+
+    /// &lt;summary&gt;
+    /// Список результатов проверки, по кодам в запросе
+    /// &lt;/summary&gt;
+    public List&lt;MOutItems&gt;? ItemsList { get; set; }
+
+    /// &lt;summary&gt;
+    /// Тело ответа в формате JsonBodyV2.
+    /// &lt;/summary&gt;
+    public JsonBodyV2 BodyV2 { get; set; } = null!;
+
+    /// &lt;summary&gt;
+    /// Лог проверки, для записи в лог файл, удобно при сертификации программы
+    /// &lt;/summary&gt;
+    public string LogString { get; set; } = null!;
+
+    /// &lt;summary&gt;
+    /// Возвращает строковое представление объекта.
+    /// &lt;/summary&gt;
+    public override string ToString()
+
+    /// &lt;summary&gt;
+    /// Формирует много строчный лог с результатами проверки.
+    /// &lt;/summary&gt;
+    public string GetStringForLog()
+}</code></pre>
+
+        <h3>MOutItems <span class="badge">Item Result</span></h3>
+        <p>Результат проверки кода маркировки. <strong>Внимание!</strong> Проверку лучше осуществлять по одному коду при добавлении в чек, при пакетной проверке модуль может вести себя непредсказуемо.</p>
+
+        <div class="property-doc">
+            <strong>📋 Свойства:</strong>
+            <div class="property-grid">
+                <div><code class="property-name">CodeGroup</code> <span class="property-type">int?</span></div>
+                <div>ID группы товара из справочника товаров. Внимание! При пакетной проверке он на некоторые кода может не возвращаться, а так же при локальной проверке.</div>
+
+                <div><code class="property-name">PermitSale</code> <span class="property-type">bool</span></div>
+                <div>Разрешение на продажу: true — можно продать, false — запрещено.</div>
+
+                <div><code class="property-name">ErrorMessage</code> <span class="property-type">string?</span></div>
+                <div>Причина запрета продажи. Отображается кассиру. Может быть null, если продажа разрешена.</div>
+
+                <div><code class="property-name">Tag1265</code> <span class="property-type">string?</span></div>
+                <div>Значение тега 1265 (ФНС), формируется при успешной проверке. Равно null при аварийном режиме (статус 203) — тогда тег 1260 не заполняется.</div>
+
+                <div><code class="property-name">MrcTobacco</code> <span class="property-type">double?</span></div>
+                <div>Минимальная розничная цена (МРЦ) для табачной продукции (группа 3), в рублях. Должна быть указана в чеке независимо от внутренней цены в учётной системе. Для серой зоны и локальной проверки (null).</div>
+            </div>
+        </div>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Результат проверки кода маркировки.
+/// Содержит статус продажи, причину отказа (если есть), тег 1265 и цену для табачной продукции.
+/// &lt;/summary&gt;
+public class MOutItems : MInItems
+{
+    /// &lt;summary&gt;
+    /// ID группы товара из справочника товаров.
+    /// Внимание! При пакетной проверке он на некоторые кода может не возвращаться,
+    /// а так же при локальной проверке
+    /// &lt;/summary&gt;
+    public int? CodeGroup { get; set; }
+
+    /// &lt;summary&gt;
+    /// Разрешение на продажу: true — можно продать, false — запрещено.
+    /// &lt;/summary&gt;
+    public bool PermitSale { get; set; }
+
+    /// &lt;summary&gt;
+    /// Причина запрета продажи. Отображается кассиру.
+    /// Может быть null, если продажа разрешена.
+    /// &lt;/summary&gt;
+    public string? ErrorMessage { get; set; }
+
+    /// &lt;summary&gt;
+    /// Значение тега 1265 (ФНС), формируется при успешной проверке.
+    /// Равно null при аварийном режиме (статус 203) — тогда тег 1260 не заполняется.
+    /// &lt;/summary&gt;
+    public string? Tag1265 { get; set; }
+
+    /// &lt;summary&gt;
+    /// Минимальная розничная цена (МРЦ) для табачной продукции (группа 3), в рублях.
+    /// Должна быть указана в чеке независимо от внутренней цены в учётной системе.
+    /// Для серой зоны и локальной проверки (null).
+    /// &lt;/summary&gt;
+    public double? MrcTobacco { get; set; }
+
+    /// &lt;summary&gt;
+    /// Формирует много строчный лог с деталями проверки.
+    /// &lt;/summary&gt;
+    public string GetStringForLog()
+}</code></pre>
+
+        <h3>JsonBodyV2 <span class="badge">PIOT Response Body</span></h3>
+        <p>Тело ответа от ПИоТ (Честный ЗНАК).</p>
+
+        <div class="property-doc">
+            <strong>📋 Свойства:</strong>
+            <div class="property-grid">
+                <div><code class="property-name">codesResponse</code> <span class="property-type">List&lt;CodesResponse&gt;?</span></div>
+                <div>Список ответов по кодам. JSON property: "codesResponse"</div>
+
+                <div><code class="property-name">code</code> <span class="property-type">int?</span></div>
+                <div>Код ответа. JSON property: "code"</div>
+
+                <div><code class="property-name">message</code> <span class="property-type">string?</span></div>
+                <div>Сообщение. JSON property: "message"</div>
+            </div>
+        </div>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Тело ответа ПИоТ
+/// &lt;/summary&gt;
+public class JsonBodyV2
+{
+    /// &lt;summary&gt;
+    /// Список ответов по кодам
+    /// &lt;/summary&gt;
+    [JsonProperty("codesResponse")]
+    public List&lt;CodesResponse&gt;? CodesResponse { get; set; }
+
+    /// &lt;summary&gt;
+    /// Код ответа
+    /// &lt;/summary&gt;
+    [JsonProperty("code")]
+    public int? Code { get; set; }
+
+    /// &lt;summary&gt;
+    /// Сообщение
+    /// &lt;/summary&gt;
+    [JsonProperty("message")]
+    public string? Message { get; set; }
+}</code></pre>
+
+        <h3>CodesResponse <span class="badge">Batch Response</span></h3>
+        <p>Ответ по группе кодов от ПИоТ.</p>
+
+        <div class="property-doc">
+            <strong>📋 Свойства:</strong>
+            <div class="property-grid">
+                <div><code class="property-name">code</code> <span class="property-type">int</span></div>
+                <div>Результат обработки операции. Возможные значения: «0» — запрос обработан успешно; «4хх», «5хх» — получен неверный запрос. JSON property: "code"</div>
+
+                <div><code class="property-name">description</code> <span class="property-type">string?</span></div>
+                <div>Текстовое описание результата выполнения метода. «ok» в случае успешного выполнения или сообщение об ошибке. JSON property: "description"</div>
+
+                <div><code class="property-name">codes</code> <span class="property-type">List&lt;ItemCode&gt;?</span></div>
+                <div>Список проверяемых кодов с детальными результатами. JSON property: "codes"</div>
+
+                <div><code class="property-name">reqId</code> <span class="property-type">string?</span></div>
+                <div>Уникальный идентификатор запроса. Формат: UUID. JSON property: "reqId"</div>
+
+                <div><code class="property-name">reqTimestamp</code> <span class="property-type">long</span></div>
+                <div>Дата и время формирования запроса (в UTC) с точностью до миллисекунд. JSON property: "reqTimestamp"</div>
+
+                <div><code class="property-name">isCheckedOffline</code> <span class="property-type">bool</span></div>
+                <div>Признак проверки марки в офлайн режиме. true — проверка офлайн; false — проверка онлайн. При значении true необходимо ориентироваться на значение поля isBlocked. JSON property: "isCheckedOffline"</div>
+
+                <div><code class="property-name">inst</code> <span class="property-type">string?</span></div>
+                <div>Идентификатор экземпляра ПО «Локальный модуль «Честный ЗНАК». JSON property: "inst"</div>
+
+                <div><code class="property-name">version</code> <span class="property-type">string?</span></div>
+                <div>Версия ПО «Локальный модуль «Честный ЗНАК». JSON property: "version"</div>
+            </div>
+        </div>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Класс, представляющий ответ по коду от ПИоТ.
+/// &lt;/summary&gt;
+public class CodesResponse
+{
+    /// &lt;summary&gt;
+    /// Результат обработки операции.
+    /// Возможные значения: «0» — запрос обработан успешно; «4хх», «5хх» — получен неверный запрос.
+    /// &lt;/summary&gt;
+    [JsonProperty("code")]
+    public int Code { get; set; }
+
+    /// &lt;summary&gt;
+    /// Текстовое описание результата выполнения метода.
+    /// «ok» в случае успешного выполнения или сообщение об ошибке.
+    /// &lt;/summary&gt;
+    [JsonProperty("description")]
+    public string? Description { get; set; }
+
+    /// &lt;summary&gt;
+    /// Список проверяемых кодов с детальными результатами.
+    /// &lt;/summary&gt;
+    [JsonProperty("codes")]
+    public List&lt;ItemCode&gt;? Codes { get; set; }
+
+    /// &lt;summary&gt;
+    /// Уникальный идентификатор запроса. Формат: UUID.
+    /// &lt;/summary&gt;
+    [JsonProperty("reqId")]
+    public string? ReqId { get; set; }
+
+    /// &lt;summary&gt;
+    /// Дата и время формирования запроса (в UTC) с точностью до миллисекунд.
+    /// &lt;/summary&gt;
+    [JsonProperty("reqTimestamp")]
+    public long ReqTimestamp { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак проверки марки в офлайн режиме.
+    /// Возможные значения: true — проверка офлайн; false — проверка онлайн.
+    /// При значении true необходимо ориентироваться на значение поля isBlocked.
+    /// &lt;/summary&gt;
+    [JsonProperty("isCheckedOffline")]
+    public bool IsCheckedOffline { get; set; }
+
+    /// &lt;summary&gt;
+    /// Идентификатор экземпляра ПО «Локальный модуль «Честный ЗНАК».
+    /// &lt;/summary&gt;
+    [JsonProperty("inst")]
+    public string? Inst { get; set; }
+
+    /// &lt;summary&gt;
+    /// Версия ПО «Локальный модуль «Честный ЗНАК».
+    /// &lt;/summary&gt;
+    [JsonProperty("version")]
+    public string? Version { get; set; }
+}</code></pre>
+
+        <h3>ItemCode <span class="badge">Detailed Code Info</span></h3>
+        <p>Модель данных кода маркировки (КИЗ) из ответа PIOT. Содержит статус, атрибуты и метаданные товара для принятия решения о продаже.</p>
+
+        <div class="property-doc">
+            <strong>📋 Свойства:</strong>
+            <div class="property-grid" style="grid-template-columns: 1fr 3fr;">
+                <div><code class="property-name">cis</code> <span class="property-type">string?</span></div>
+                <div>Код идентификации (КИ / КиЗ) из запроса. JSON property: "cis"</div>
+
+                <div><code class="property-name">found</code> <span class="property-type">bool</span></div>
+                <div>Признак наличия кода в ГИС МТ. true — найден; false — не найден. JSON property: "found"</div>
+
+                <div><code class="property-name">valid</code> <span class="property-type">bool</span></div>
+                <div>Результат проверки валидности структуры КИ / КиЗ. true — структура валидна; false — невалидна. JSON property: "valid"</div>
+
+                <div><code class="property-name">printView</code> <span class="property-type">string?</span></div>
+                <div>Представление кода без крипто-подписи. JSON property: "printView"</div>
+
+                <div><code class="property-name">gtin</code> <span class="property-type">string?</span></div>
+                <div>Код товара (GTIN). JSON property: "gtin"</div>
+
+                <div><code class="property-name">groupIds</code> <span class="property-type">List&lt;int&gt;</span></div>
+                <div>Массив идентификаторов товарных групп. Например: 3 — табачная продукция, 16 — никотиносодержащая продукция. JSON property: "groupIds"</div>
+
+                <div><code class="property-name">verified</code> <span class="property-type">bool</span></div>
+                <div>Результат проверки крипто-подписи КМ. true — подпись верна; false — ошибка проверки. Для «Товары из натурального меха»: true — найден в ИР Маркировки. JSON property: "verified"</div>
+
+                <div><code class="property-name">realizable</code> <span class="property-type">bool</span></div>
+                <div>Признак возможности реализации (статус «В обороте»). true — можно продать; false — нельзя. JSON property: "realizable"</div>
+
+                <div><code class="property-name">utilised</code> <span class="property-type">bool</span></div>
+                <div>Признак нанесения КИ / КиЗ на упаковку. true — нанесён; false — не нанесён. JSON property: "utilised"</div>
+
+                <div><code class="property-name">expireDate</code> <span class="property-type">string?</span></div>
+                <div>Дата истечения срока годности. Формат: yyyy-MM-dd'T'HH:mm:ss.SSSz. JSON property: "expireDate"</div>
+
+                <div><code class="property-name">variableExpirations</code> <span class="property-type">string?</span></div>
+                <div>Информация о вариативном сроке годности (для молочной продукции). JSON property: "variableExpirations"</div>
+
+                <div><code class="property-name">productionDate</code> <span class="property-type">string?</span></div>
+                <div>Дата производства. Формат: yyyy-MM-dd'T'HH:mm:ss.SSSz. JSON property: "productionDate"</div>
+
+                <div><code class="property-name">productWeight</code> <span class="property-type">int</span></div>
+                <div>Переменный вес продукции в граммах (для молочной продукции). JSON property: "productWeight"</div>
+
+                <div><code class="property-name">prVetDocument</code> <span class="property-type">string?</span></div>
+                <div>Производственный ветеринарный документ (для молочной продукции). JSON property: "prVetDocument"</div>
+
+                <div><code class="property-name">isOwner</code> <span class="property-type">bool</span></div>
+                <div>Признак принадлежности кода запрошенному владельцу (по ИНН). true — принадлежит; false — не принадлежит. JSON property: "isOwner"</div>
+
+                <div><code class="property-name">isBlocked</code> <span class="property-type">bool</span></div>
+                <div>Признак блокировки продажи по решению ОГВ. true — заблокирован; false — разрешён. JSON property: "isBlocked"</div>
+
+                <div><code class="property-name">ogvs</code> <span class="property-type">List&lt;string&gt;?</span></div>
+                <div>Органы государственной власти, установившие блокировку. Возможные значения: RAR, FTS, FNS, RSHN, RPN, MVD, RZN. JSON property: "ogvs"</div>
+
+                <div><code class="property-name">errorCode</code> <span class="property-type">int</span></div>
+                <div>Код ошибки при обработке КМ. 0 — нет ошибки; остальные — соответствуют конкретным проблемам. JSON property: "errorCode"</div>
+
+                <div><code class="property-name">isTracking</code> <span class="property-type">bool</span></div>
+                <div>Признак включения контроля прослеживаемости. true — включён; false — выключен. JSON property: "isTracking"</div>
+
+                <div><code class="property-name">sold</code> <span class="property-type">bool</span></div>
+                <div>Признак того, что товар уже продан. true — продан; false — не продан. JSON property: "sold"</div>
+
+                <div><code class="property-name">eliminationState</code> <span class="property-type">int</span></div>
+                <div>Причина выбытия, разрешающая продажу: 1 — дистанционная продажа / образцы; 2 — собственные нужды / производство. JSON property: "eliminationState"</div>
+
+                <div><code class="property-name">mrp</code> <span class="property-type">double?</span></div>
+                <div>Максимальная розничная цена (в копейках). Только для табачной, альтернативной и никотиносодержащей продукции. JSON property: "mrp"</div>
+
+                <div><code class="property-name">smp</code> <span class="property-type">int?</span></div>
+                <div>Единая минимальная цена (ЕМЦ, в копейках). Только для табачной продукции. JSON property: "smp"</div>
+
+                <div><code class="property-name">grayZone</code> <span class="property-type">bool</span></div>
+                <div>Признак принадлежности табачной продукции к «серой зоне». true — серая зона; false — не серая. JSON property: "grayZone"</div>
+
+                <div><code class="property-name">innerUnitCount</code> <span class="property-type">int</span></div>
+                <div>Количество единиц в упаковке / объём / вес. Зависит от товарной группы. JSON property: "innerUnitCount"</div>
+
+                <div><code class="property-name">soldUnitCount</code> <span class="property-type">int</span></div>
+                <div>Счётчик проданных единиц / объёма / веса. JSON property: "soldUnitCount"</div>
+
+                <div><code class="property-name">packageType</code> <span class="property-type">string?</span></div>
+                <div>Тип упаковки: "UNIT", "GROUP" и др. JSON property: "packageType"</div>
+
+                <div><code class="property-name">parent</code> <span class="property-type">string?</span></div>
+                <div>КИ агрегата (родительский код). Не возвращается для «Товары из натурального меха». JSON property: "parent"</div>
+
+                <div><code class="property-name">producerInn</code> <span class="property-type">string?</span></div>
+                <div>ИНН производителя. Не возвращается для молочной продукции из Беларуси. JSON property: "producerInn"</div>
+
+                <div><code class="property-name">productionSerialNumber</code> <span class="property-type">string?</span></div>
+                <div>Номер производственной серии (для медицинских изделий). JSON property: "productionSerialNumber"</div>
+
+                <div><code class="property-name">productionBatchNumber</code> <span class="property-type">string?</span></div>
+                <div>Номер производственной партии (для медицинских изделий). JSON property: "productionBatchNumber"</div>
+
+                <div><code class="property-name">factorySerialNumber</code> <span class="property-type">string?</span></div>
+                <div>Заводской серийный номер (для медицинских изделий). JSON property: "factorySerialNumber"</div>
+
+                <div><code class="property-name">packageQuantity</code> <span class="property-type">int</span></div>
+                <div>Ёмкость потребительской упаковки (например, количество пачек в блоке). По умолчанию: 10. JSON property: "packageQuantity"</div>
+            </div>
+        </div>
+
+        <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Модель данных кода маркировки (КИЗ) из ответа PIOT.
+/// Содержит статус, атрибуты и метаданные товара для принятия решения о продаже.
+/// &lt;/summary&gt;
+public class ItemCode
+{
+    /// &lt;summary&gt;
+    /// Код идентификации (КИ / КиЗ) из запроса.
+    /// &lt;/summary&gt;
+    [JsonProperty("cis")]
+    public  string? Cis { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак наличия кода в ГИС МТ.
+    /// true — найден; false — не найден.
+    /// &lt;/summary&gt;
+    [JsonProperty("found")]
+    public bool Found { get; set; }
+
+    /// &lt;summary&gt;
+    /// Результат проверки валидности структуры КИ / КиЗ.
+    /// true — структура валидна; false — невалидна.
+    /// &lt;/summary&gt;
+    [JsonProperty("valid")]
+    public bool Valid { get; set; }
+
+    /// &lt;summary&gt;
+    /// Представление кода без крипто-подписи.
+    /// &lt;/summary&gt;
+    [JsonProperty("printView")]
+    public string? PrintView { get; set; }
+
+    /// &lt;summary&gt;
+    /// Код товара (GTIN).
+    /// &lt;/summary&gt;
+    [JsonProperty("gtin")]
+    public string? Gtin { get; set; }
+
+    /// &lt;summary&gt;
+    /// Массив идентификаторов товарных групп.
+    /// Например: 3 — табачная продукция, 16 — никотиносодержащая продукция.
+    /// &lt;/summary&gt;
+    [JsonProperty("groupIds")]
+    public List&lt;int&gt; GroupIds { get; set; }
+
+    /// &lt;summary&gt;
+    /// Результат проверки крипто-подписи КМ.
+    /// true — подпись верна; false — ошибка проверки.
+    /// Для «Товары из натурального меха»: true — найден в ИР Маркировки.
+    /// &lt;/summary&gt;
+    [JsonProperty("verified")]
+    public bool Verified { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак возможности реализации (статус «В обороте»).
+    /// true — можно продать; false — нельзя.
+    /// &lt;/summary&gt;
+    [JsonProperty("realizable")]
+    public bool Realizable { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак нанесения КИ / КиЗ на упаковку.
+    /// true — нанесён; false — не нанесён.
+    /// &lt;/summary&gt;
+    [JsonProperty("utilised")]
+    public bool Utilised { get; set; }
+
+    /// &lt;summary&gt;
+    /// Дата истечения срока годности.
+    /// Формат: yyyy-MM-dd’T’HH:mm:ss.SSSz.
+    /// &lt;/summary&gt;
+    [JsonProperty("expireDate")]
+    public string? ExpireDate { get; set; }
+
+    /// &lt;summary&gt;
+    /// Информация о вариативном сроке годности (для молочной продукции).
+    /// &lt;/summary&gt;
+    [JsonProperty("variableExpirations")]
+    public string? VariableExpirations { get; set; }
+
+    /// &lt;summary&gt;
+    /// Дата производства.
+    /// Формат: yyyy-MM-dd’T’HH:mm:ss.SSSz.
+    /// &lt;/summary&gt;
+    [JsonProperty("productionDate")]
+    public string? ProductionDate { get; set; }
+
+    /// &lt;summary&gt;
+    /// Переменный вес продукции в граммах (для молочной продукции).
+    /// &lt;/summary&gt;
+    [JsonProperty("productWeight")]
+    public int ProductWeight { get; set; }
+
+    /// &lt;summary&gt;
+    /// Производственный ветеринарный документ (для молочной продукции).
+    /// &lt;/summary&gt;
+    [JsonProperty("prVetDocument")]
+    public string? PrVetDocument { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак принадлежности кода запрошенному владельцу (по ИНН).
+    /// true — принадлежит; false — не принадлежит.
+    /// &lt;/summary&gt;
+    [JsonProperty("isOwner")]
+    public bool IsOwner { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак блокировки продажи по решению ОГВ.
+    /// true — заблокирован; false — разрешён.
+    /// &lt;/summary&gt;
+    [JsonProperty("isBlocked")]
+    public bool IsBlocked { get; set; }
+
+    /// &lt;summary&gt;
+    /// Органы государственной власти, установившие блокировку.
+    /// Возможные значения: RAR, FTS, FNS, RSHN, RPN, MVD, RZN.
+    /// &lt;/summary&gt;
+    [JsonProperty("ogvs")]
+    public List&lt;string&gt;? Ogvs { get; set; }
+
+    /// &lt;summary&gt;
+    /// Код ошибки при обработке КМ.
+    /// 0 — нет ошибки; остальные — соответствуют конкретным проблемам.
+    /// &lt;/summary&gt;
+    [JsonProperty("errorCode")]
+    public int ErrorCode { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак включения контроля прослеживаемости.
+    /// true — включён; false — выключен.
+    /// &lt;/summary&gt;
+    [JsonProperty("isTracking")]
+    public bool IsTracking { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак того, что товар уже продан.
+    /// true — продан; false — не продан.
+    /// &lt;/summary&gt;
+    [JsonProperty("sold")]
+    public bool Sold { get; set; }
+
+    /// &lt;summary&gt;
+    /// Причина выбытия, разрешающая продажу:
+    /// 1 — дистанционная продажа / образцы;
+    /// 2 — собственные нужды / производство.
+    /// &lt;/summary&gt;
+    [JsonProperty("eliminationState")]
+    public int EliminationState { get; set; }
+
+    /// &lt;summary&gt;
+    /// Максимальная розничная цена (в копейках).
+    /// Только для табачной, альтернативной и никотиносодержащей продукции.
+    /// &lt;/summary&gt;
+    [JsonProperty("mrp")]
+    public double? Mrp { get; set; }
+
+    /// &lt;summary&gt;
+    /// Единая минимальная цена (ЕМЦ, в копейках).
+    /// Только для табачной продукции.
+    /// &lt;/summary&gt;
+    [JsonProperty("smp")]
+    public int? Smp { get; set; }
+
+    /// &lt;summary&gt;
+    /// Признак принадлежности табачной продукции к «серой зоне».
+    /// true — серая зона; false — не серая.
+    /// &lt;/summary&gt;
+    [JsonProperty("grayZone")]
+    public bool GrayZone { get; set; }
+
+    /// &lt;summary&gt;
+    /// Количество единиц в упаковке / объём / вес.
+    /// Зависит от товарной группы.
+    /// &lt;/summary&gt;
+    [JsonProperty("innerUnitCount")]
+    public int InnerUnitCount { get; set; }
+
+    /// &lt;summary&gt;
+    /// Счётчик проданных единиц / объёма / веса.
+    /// &lt;/summary&gt;
+    [JsonProperty("soldUnitCount")]
+    public int SoldUnitCount { get; set; }
+
+    /// &lt;summary&gt;
+    /// Тип упаковки: "UNIT", "GROUP" и др.
+    /// &lt;/summary&gt;
+    [JsonProperty("packageType")]
+    public string? PackageType { get; set; }
+
+    /// &lt;summary&gt;
+    /// КИ агрегата (родительский код).
+    /// Не возвращается для «Товары из натурального меха».
+    /// &lt;/summary&gt;
+    [JsonProperty("parent")]
+    public string? Parent { get; set; }
+
+    /// &lt;summary&gt;
+    /// ИНН производителя.
+    /// Не возвращается для молочной продукции из Беларуси.
+    /// &lt;/summary&gt;
+    [JsonProperty("producerInn")]
+    public string? ProducerInn { get; set; }
+
+    /// &lt;summary&gt;
+    /// Номер производственной серии (для медицинских изделий).
+    /// &lt;/summary&gt;
+    [JsonProperty("productionSerialNumber")]
+    public string? ProductionSerialNumber { get; set; }
+
+    /// &lt;summary&gt;
+    /// Номер производственной партии (для медицинских изделий).
+    /// &lt;/summary&gt;
+    [JsonProperty("productionBatchNumber")]
+    public string? ProductionBatchNumber { get; set; }
+
+    /// &lt;summary&gt;
+    /// Заводской серийный номер (для медицинских изделий).
+    /// &lt;/summary&gt;
+    [JsonProperty("factorySerialNumber")]
+    public string? FactorySerialNumber { get; set; }
+
+    /// &lt;summary&gt;
+    /// Ёмкость потребительской упаковки (например, количество пачек в блоке).
+    /// По умолчанию: 10.
+    /// &lt;/summary&gt;
+    [JsonProperty("packageQuantity")]
+    public int PackageQuantity { get; set; }
+
+    /// &lt;summary&gt;
+    /// Возвращает текстовое описание ошибки по её коду.
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Сообщение об ошибке или null, если код 0.&lt;/returns&gt;
+    private string ServerErrorMessage()
+    {
+        switch (ErrorCode)
+        {
+            case 1: return "Ошибка валидации КМ";
+            case 2: return "КМ не содержит GTIN";
+            case 3: return "КМ не содержит серийный номер";
+            case 4: return "КМ содержит недопустимые символы";
+            case 5: return "Ошибка верификации крипто-подписи КМ (формат крипто-подписи не соответствует типу КМ)";
+            case 6: return "Ошибка верификации крипто-подписи КМ (криптоподпись невалидная)";
+            case 7: return "Ошибка верификации крипто-подписи КМ (крипто-ключ не валиден)";
+            case 8: return "КМ не прошел верификацию в стране эмитента";
+            case 9: return "Найденные AI в КМ не поддерживаются";
+            case 10: return "КМ не найден в ГИС МТ";
+            case 11: return "КМ не найден в трансгране";
+            default: return null;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Формирует полное сообщение об ошибке.
+    /// &lt;/summary&gt;
+    /// &lt;param name="altMessage"&gt;Сообщение, используемое, если код ошибки неизвестен.&lt;/param&gt;
+    /// &lt;returns&gt;Строка с префиксом и причиной запрета продажи.&lt;/returns&gt;
+    public string GetErrorMessage(string altMessage)
+    {
+        string prefix = "Продажа запрещена. Причина: ";
+        string serverMsg = ServerErrorMessage();
+        return prefix + (serverMsg ?? altMessage);
+    }
+}</code></pre>
+
+        <h3>📋 Коды ошибок ItemCode</h3>
+
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Код</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Ошибка валидации КМ</td></tr>
+                <tr><td>2</td><td>КМ не содержит GTIN</td></tr>
+                <tr><td>3</td><td>КМ не содержит серийный номер</td></tr>
+                <tr><td>4</td><td>КМ содержит недопустимые символы</td></tr>
+                <tr><td>5</td><td>Ошибка верификации крипто-подписи КМ (формат крипто-подписи не соответствует типу КМ)</td></tr>
+                <tr><td>6</td><td>Ошибка верификации крипто-подписи КМ (криптоподпись невалидная)</td></tr>
+                <tr><td>7</td><td>Ошибка верификации крипто-подписи КМ (крипто-ключ не валиден)</td></tr>
+                <tr><td>8</td><td>КМ не прошел верификацию в стране эмитента</td></tr>
+                <tr><td>9</td><td>Найденные AI в КМ не поддерживаются</td></tr>
+                <tr><td>10</td><td>КМ не найден в ГИС МТ</td></tr>
+                <tr><td>11</td><td>КМ не найден в трансгране</td></tr>
+            </tbody>
+        </table>
+
+        <h2>📝 Пример запроса (curl)</h2>
+
+        <div class="curl-example">
+            <pre><code class="language-bash">
+    curl --location 'https://map23.ru/api/v2/check' \
+    --header 'Content-Type: application/json' \
+    --data '[
+      {
+        "km": "00840147505712Zz;ZnRbAAAAdGVz",
+        "priceTobaccoGroup": 15000
+      }
+    ]'
+</code></pre>
+        </div>
+
+        <h2>📥 Пример ответа</h2>
+
+        <pre><code class="language-json">{
+  "totalErrorMessage": null,
+  "itemsList": [
+    {
+      "codeGroup": 16,
+      "permitSale": false,
+      "errorMessage": "Цена единицы товара: 150,00 руб. меньше допустимой минимальной цены: 200,00 руб.",
+      "tag1265": "UUID=f7b51a1b-75f0-4c3b-8843-52daa4765dea&Time=1773524146442",
+      "mrcTobacco": 150,
+      "km": "00840147505712Zz;ZnRbAAAAdGVz",
+      "idCase": "5.26",
+      "descriptionCase": "Запрет продажи НСП по минимальной розничной цене"
+    }
+  ],
+  "bodyV2": {
+    "codesResponse": [
+      {
+        "code": 0,
+        "description": "ok",
+        "codes": [
+          {
+            "cis": "00840147505712Zz;ZnRbAAAAdGVz",
+            "found": true,
+            "valid": true,
+            "printView": "00840147505712Zz;ZnRb",
+            "gtin": "00840147505712",
+            "groupIds": [
+              16
+            ],
+            "verified": true,
+            "realizable": true,
+            "utilised": true,
+            "expireDate": null,
+            "variableExpirations": null,
+            "productionDate": "2025-09-18T00:00:00.000Z",
+            "productWeight": 0,
+            "prVetDocument": null,
+            "isOwner": true,
+            "isBlocked": false,
+            "ogvs": null,
+            "errorCode": 0,
+            "isTracking": false,
+            "sold": false,
+            "eliminationState": 0,
+            "mrp": 20000,
+            "smp": null,
+            "grayZone": false,
+            "innerUnitCount": 0,
+            "soldUnitCount": 0,
+            "packageType": "UNIT",
+            "parent": null,
+            "producerInn": "7731376812",
+            "productionSerialNumber": null,
+            "productionBatchNumber": null,
+            "factorySerialNumber": null,
+            "packageQuantity": 0
+          }
+        ],
+        "reqId": "f7b51a1b-75f0-4c3b-8843-52daa4765dea",
+        "reqTimestamp": 1773524146442,
+        "isCheckedOffline": false,
+        "inst": null,
+        "version": null
+      }
+    ],
+    "code": null,
+    "message": null
+  },
+  "logString": "\n  ************** Проверка кодов с помощью ТС ПИоТ **************\n  Список проверяемых кодов:\n  00840147505712Zz;ZnRbAAAAdGVz [MDA4NDAxNDc1MDU3MTJaejtablJiQUFBQWRHVno=]\n  URL TC РИоТ: https://esm-emu.ao-esp.ru/api/v2/codes/check\n  Тело запроса:\n  {\"codes\":[\"MDA4NDAxNDc1MDU3MTJaejtablJiQUFBQWRHVno=\"],\"client_info\":{\"name\":\"bitnic\",\"version\":\"0.0.1\",\"id\":\"18aa4ecf-523c-4c2a-a759-d0435f4 \",\"token\":\"18aa4ecf-523c-4c2a-a759-d0435f4c0408\"}}\n  Http code: 200\n  Тело ответа:\n  {\"codesResponse\":[{\"code\":0,\"description\":\"ok\",\"codes\":[{\"cis\":\"00840147505712Zz;ZnRbAAAAdGVz\",\"found\":true,\"valid\":true,\"printView\":\"00840147505712Zz;ZnRb\",\"gtin\":\"00840147505712\",\"groupIds\":[16],\"verified\":true,\"realizable\":true,\"utilised\":true,\"productionDate\":\"2025-09-18T00:00:00.000Z\",\"isOwner\":true,\"isBlocked\":false,\"errorCode\":0,\"isTracking\":false,\"sold\":false,\"mrp\":20000,\"grayZone\":false,\"packageType\":\"UNIT\",\"producerInn\":\"7731376812\"}],\"reqId\":\"f7b51a1b-75f0-4c3b-8843-52daa4765dea\",\"reqTimestamp\":1773524146442,\"isCheckedOffline\":false}]}\r\nКода были проверены online.\n  Результат проверки кодов:\n  Код: 00840147505712Zz;ZnRbAAAAdGVz\n  Продажа: запретить\n  Причина: Цена единицы товара: 150,00 руб. меньше допустимой минимальной цены: 200,00 руб.\n  Цена за единицу руб.: 150,00\n  Код группы: 16\n  Тэг 1265: UUID=f7b51a1b-75f0-4c3b-8843-52daa4765dea&Time=1773524146442\n  Тест: 5.26\n  Описание теста: Запрет продажи НСП по минимальной розничной цене"
+}</code></pre>
+
+        <div class="hr"></div>
+
+        <div class="alert alert-danger">
+            <strong>⚠️ Важные замечания:</strong>
+            <ul style="margin-top: 8px; margin-left: 20px;">
+                <li>При пакетной проверке модуль может вести себя непредсказуемо — рекомендуется проверять по одному коду при добавлении в чек</li>
+                <li>Код в Swagger должен вставляться полностью, включая группы разделителя</li>
+                <li>Цена PriceTobaccoGroup указывается в копейках только для групп 3, 15, 16</li>
+                <li>При офлайн проверке (isCheckedOffline = true) необходимо ориентироваться на поле isBlocked</li>
+                <li>В логе ответа отображается полная информация о запросе к ТС ПИоТ и результате проверки</li>
+                <li><strong>Юридическая ответственность:</strong> Использование сервиса осуществляется на свой риск согласно п. 9.14 оферты</li>
+                <li><strong>Копирование кодов:</strong> Кликните на любой код в таблице выше, чтобы скопировать его как JSON-строку <code class="json-preview">"код"</code></li>
+            </ul>
+        </div>
+
+        <p style="text-align: center; color: var(--text-secondary); margin-top: 40px;">
+            Документация подготовлена на основе исходного кода API v2<br>
+            Актуально на 14 марта 2026 года
+        </p>
+    </div>
+
+    <script>
+        function copyToClipboard(element, code) {
+            // Экранируем специальные символы для JSON и оборачиваем в кавычки
+            const escapedCode = JSON.stringify(code);
+
+            // Используем современный API clipboard
+            navigator.clipboard.writeText(escapedCode).then(() => {
+                // Визуальный фидбек - меняем класс и текст
+                element.classList.add('copied');
+                const originalText = element.querySelector('.copy-indicator').textContent;
+                element.querySelector('.copy-indicator').textContent = '✅ скопировано!';
+
+                // Показываем всплывающее уведомление с предпросмотром
+                showToast(`Скопировано: ${escapedCode}`);
+
+                // Возвращаем оригинальный вид через 2 секунды
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.querySelector('.copy-indicator').textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+                // Fallback для старых браузеров
+                fallbackCopyText(escapedCode);
+            });
+        }
+
+        function fallbackCopyText(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                document.execCommand('copy');
+                showToast('Скопировано (резервный метод)');
+            } catch (err) {
+                console.error('Ошибка при копировании: ', err);
+                showToast('Ошибка при копировании', 'error');
+            }
+
+            document.body.removeChild(textarea);
+        }
+
+        function showToast(message, type = 'success') {
+            // Удаляем существующий тост, если есть
+            const existingToast = document.querySelector('.toast-message');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            // Создаём новый тост
+            const toast = document.createElement('div');
+            toast.className = 'toast-message';
+            toast.textContent = message;
+
+            // Устанавливаем цвет в зависимости от типа
+            if (type === 'error') {
+                toast.style.backgroundColor = 'var(--danger)';
+            } else {
+                toast.style.backgroundColor = 'var(--success)';
+            }
+
+            document.body.appendChild(toast);
+
+            // Автоматически скрываем через 3 секунды
+            setTimeout(() => {
+                toast.classList.add('fade-out');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Добавляем обработчики для всех ячеек с кодом при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Таблица с копированием кодов в формате JSON загружена');
+        });
+    </script>
+</body>
+</html>

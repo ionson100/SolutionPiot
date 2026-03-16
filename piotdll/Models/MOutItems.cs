@@ -6,13 +6,15 @@ namespace piotdll.Models;
 /// <summary>
 /// Результат проверки кода маркировки.
 /// Содержит статус продажи, причину отказа (если есть), тег 1265 и цену для табачной продукции.
-/// Внимание! Проверку лучше осуществлять по одному коду, при пакетной проверке модуль может во...
+/// Внимание! Проверку лучше осуществлять по одному коду при добавлении в чек,
+/// при пакетной проверке модуль может вести себя не предсказуемо
 /// </summary>
 public class MOutItems : MInItems
 {
     /// <summary>
     /// ID группы товара из справочника товаров.
-    /// Внимание! При пакетной проверке он на некоторые кода может не возвращаться.
+    /// Внимание! При пакетной проверке он на некоторые кода может не возвращаться,
+    /// а так же при локальной проверке
     /// </summary>
     public int? CodeGroup { get; set; }
 
@@ -25,13 +27,13 @@ public class MOutItems : MInItems
     /// Причина запрета продажи. Отображается кассиру.
     /// Может быть null, если продажа разрешена.
     /// </summary>
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
     /// <summary>
     /// Значение тега 1265 (ФНС), формируется при успешной проверке.
     /// Равно null при аварийном режиме (статус 203) — тогда тег 1260 не заполняется.
     /// </summary>
-    public string Tag1265 { get; set; }
+    public string? Tag1265 { get; set; }
 
     /// <summary>
     /// Минимальная розничная цена (МРЦ) для табачной продукции (группа 3), в рублях.
@@ -69,7 +71,9 @@ public class MOutItems : MInItems
     /// </summary>
     public override string ToString()
     {
-        return $"MOutItems{{IdCase='{IdCase}', DescriptionCase='{DescriptionCase}', Km='{Km}', PermitSale={PermitSale}, ErrorMessage='{ErrorMessage}', Tag1265='{Tag1265}', MrcTobacco={(MrcTobacco != null ? MrcTobacco.Value.ToString("F2") : "null")}}}";
+        return $"MOutItems{{IdCase='{IdCase}', DescriptionCase='{DescriptionCase}', " +
+               $"Km='{Km}', PermitSale={PermitSale}, ErrorMessage='{ErrorMessage}', " +
+               $"Tag1265='{Tag1265}', MrcTobacco={(MrcTobacco != null ? MrcTobacco.Value.ToString("F2") : "null")}}}";
     }
 
     /// <summary>
@@ -109,7 +113,7 @@ public class MOutItems : MInItems
     /// <summary>
     /// Сравнивает текущий объект с другим для определения равенства.
     /// </summary>
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj)) return true;
         if (obj is null || GetType() != obj.GetType()) return false;

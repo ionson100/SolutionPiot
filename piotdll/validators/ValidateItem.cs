@@ -1,5 +1,6 @@
 ﻿using System;
 using piotdll.Models;
+using piotdll.Models.v2;
 
 
 namespace piotdll.validators;
@@ -94,7 +95,7 @@ internal class ValidateItem : BaseValidator
         }
 
         // Проверка срока годности
-        string expireError = CheckExpire(code);
+        string? expireError = CheckExpire(code);
         if (expireError != null)
         {
             mOut.ErrorMessage = code.GetErrorMessage(expireError);
@@ -106,7 +107,8 @@ internal class ValidateItem : BaseValidator
         ValidatePrice.Validate(mOut, code);
 
         // Все проверки пройдены
-        mOut.PermitSale = true;
+        if(mOut.ErrorMessage==null)
+           mOut.PermitSale = true;
         return mOut;
     }
 
@@ -115,27 +117,15 @@ internal class ValidateItem : BaseValidator
     /// </summary>
     /// <param name="codePiot">Данные о коде</param>
     /// <returns>Сообщение об ошибке, если просрочено; иначе — null</returns>
-    private string CheckExpire(ItemCode codePiot)
+    private string? CheckExpire(ItemCode codePiot)
     {
         if (string.IsNullOrEmpty(codePiot.ExpireDate))
             return null;
-
-        if (DateTime.TryParseExact(codePiot.ExpireDate, "yyyy-MM-dd",
-                System.Globalization.CultureInfo.InvariantCulture,
-                System.Globalization.DateTimeStyles.None, out DateTime expireDate))
-        {
-            if (expireDate < DateTime.Today)
-            {
-                return $"Продукт просрочен.\nДата окончания реализации: {expireDate:yyyy-MM-dd}";
-            }
+        DateTime expireDate = DateTime.Parse(codePiot.ExpireDate, null, System.Globalization.DateTimeStyles.RoundtripKind);
+        if (expireDate < DateTime.Today)
+        { 
+            return $"Продукт просрочен. Дата окончания реализации: {expireDate:yyyy-MM-dd}";
         }
-        else
-        {
-            // Если дата не распарсилась, можно вернуть ошибку формата, но по логике оригинала — null
-            // В оригинале ParseException, здесь мы просто игнорируем или логируем.
-            // Оставим null, чтобы не блокировать продажу из-за кривой даты.
-        }
-
         return null;
     }
 }
