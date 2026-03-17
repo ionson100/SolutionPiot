@@ -30,6 +30,3 @@ README.md
 !.git/refs/heads/**
 piot/
 piot22/
-**/piot
-**/piot22
-**/secrets/

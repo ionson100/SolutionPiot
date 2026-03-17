@@ -5,16 +5,18 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
+EXPOSE 8081
 
 
 # Этот этап используется для сборки проекта службы
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["piot_123.csproj", "."]
-RUN dotnet restore "./piot_123.csproj"
+COPY ["piot_123/piot_123.csproj", "piot_123/"]
+COPY ["piotdll/piotdll.csproj", "piotdll/"]
+RUN dotnet restore "./piot_123/piot_123.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/piot_123"
 RUN dotnet build "./piot_123.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Этот этап используется для публикации проекта службы, который будет скопирован на последний этап
