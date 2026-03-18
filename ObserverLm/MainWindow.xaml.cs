@@ -101,6 +101,15 @@ namespace ObserverLm
                         
 
                 }
+                case "b5":
+                {
+                    if (MyContentControl.Content is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
+                    MyContentControl.Content = new HelpControl1();
+                    break;
+                }
             }
         }
     }

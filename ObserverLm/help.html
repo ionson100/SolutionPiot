@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наблюдатель за Локальным модулем (Observer for Local Module)</title>
+    <!-- Подключаем Highlight.js и тему (например, GitHub) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- Дополнительные языки: csharp и json5 (для JSON с комментариями) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json5.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background-color: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        pre {
+            background-color: #f6f8fa;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        code {
+            font-family: "SF Mono", Monaco, Consolas, "Liberation Mono", Courier, monospace;
+        }
+
+        .note {
+            background-color: #ffebcc;
+            border-left: 6px solid #ffa500;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #e1e4e8;
+            margin: 24px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Наблюдатель за Локальным модулем <br> <small style="font-weight: normal;">(Observer for Local Module)</small></h1>
+    <p>
+        версия модуля <code>2.****</code>, api версии 2<br>
+        Позволяет инициализировать, наблюдать за логами, получать статус.<br>
+        При старте программы убедитесь, что настройки программы верные.<br>
+        Настройки находятся в директории <code>settings</code>, в файле <code>srttings.json</code>.
+    </p>
+
+    <h2>Класс настроек (C#)</h2>
+    <pre><code class="language-csharp">    internal class MySettings
+    {
+        /// &lt;summary&gt;
+        /// Путь к API локального модуля. Например: http://localhost:5995/api/v2/
+        /// &lt;/summary&gt;
+        public string Url { get; set; }
+
+        /// &lt;summary&gt;
+        /// Строка в формате Base64 для авторизации Basic по умолчанию стоит admin:admin
+        /// &lt;/summary&gt;
+        public string Auth { get; set; }
+        /// &lt;summary&gt;
+        /// Токен для авторизации по API
+        /// &lt;/summary&gt;
+        public string Token { get; set; }
+        /// &lt;summary&gt;
+        /// Путь к папке логов
+        /// &lt;/summary&gt;
+        public string FolderLog { get; set; }
+        /// &lt;summary&gt;
+        /// Количество строк в логах, 
+        /// которые будут отображаться при открытии приложения, по умолчанию 100. 0 не допускается.
+        /// &lt;/summary&gt;
+        public int Tail { get; set; } = 100;
+    }</code></pre>
+
+    <h2>Пример файла настроек (JSON с комментариями)</h2>
+    <pre><code class="language-json5">{
+  "Url": "http://localhost:5995/api/v2/",
+  "Auth": "YWRtaW46YWRtaW4=", //(admin:admin в Base64))
+  "Token": "97486293-646b-463e-8199-48c37e36d605",
+  "FolderLog": "C:\\Program Files\\Regime\\var\\log",
+  "Tail": 100
+}</code></pre>
+
+    <hr>
+    <p><a href="https://github.com/ionson100/SolutionPiot/tree/master/ObserverLm" target="_blank">GitHub репозиторий</a></p>
+
+    
+</body>
+</html>

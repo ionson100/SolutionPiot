@@ -1,5 +1,5 @@
 ﻿#### Наблюдатель за Локальным модулем (Observer for Local Module)
-версия модуля ```"version": "2.****"```\, api версии 2\
+версия модуля ```2.****```\, api версии 2\
 Позволяет инициализировать, наблюдать за логами, получать статус.\
 При старте программы, убедитесь что настройки программы верные.\
 Настройки находятся в директории settings, в файле srttings.json.
@@ -8,7 +8,7 @@
     internal class MySettings
     {
         /// <summary>
-        /// Путь к API локального модуля. Например: http://localhost:8080/api/v1/
+        /// Путь к API локального модуля. Например: http://localhost:5995/api/v2/
         /// </summary>
         public string Url { get; set; }
 
@@ -40,4 +40,5 @@
   "FolderLog": "C:\\Program Files\\Regime\\var\\log",
   "Tail": 100
 }
-[ithib](https://github.com)
+```
+[GitHub](https://github.com/ionson100/SolutionPiot/tree/master/ObserverLm)

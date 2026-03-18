@@ -43,7 +43,8 @@
         <!-- Параметр 4 (с кнопкой выбора папки) -->
         <Label Content="FOLDER LOG:" FontWeight="Bold" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox Name="TxtFolderPath" Style="{StaticResource EditOrder}" Grid.Row="4" Grid.Column="1" Margin="5"/>
-        <Button Content=". . ." Grid.Row="4" Grid.Column="2" Width="100" Margin="5" Click="BtnBrowse_Click"/>
+        <Button Content=". . ." Grid.Row="4" Grid.Column="2" Width="100" Margin="5" Click="BtnBrowse_Click"
+                Style="{StaticResource ButtonHeadPaneStyle}"/>
         <Button Content="Сохранить" Grid.Row="5" Grid.Column="1" Style="{StaticResource ButtonHeadPaneStyle}"  Height="50" 
                 HorizontalAlignment="Right" Width="150" Margin="5" Click="ButtonBase_OnClick"/>
 

@@ -33,9 +33,16 @@ namespace ObserverLm
         {
             try
             {
-                string str = File.ReadAllText("settings/settings.json");
-                var settings = JsonConvert.DeserializeObject<MySettings>(str);
-                return settings;
+                string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings", "settings.json");
+                if (File.Exists(path))
+                {
+                    string str = File.ReadAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings",
+                        "settings.json"));
+                    var settings = JsonConvert.DeserializeObject<MySettings>(str);
+                    return settings;
+                }
+                throw new FileNotFoundException("Критическая ошибка: файл настроек не найден!", path);
+
             }
             catch (Exception e)
             {

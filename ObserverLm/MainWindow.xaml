@@ -14,10 +14,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
     <StackPanel Orientation="Horizontal">
-            <Button Width="200" Tag="b1" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Init</Button>
-            <Button Width="200" Tag="b2" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Status</Button>
-            <Button Width="200" Tag="b3" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Logs</Button>
-            <Button Width="200" Tag="b4" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Settings</Button>
+        <Button Width="200" Tag="b1" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Init</Button>
+        <Button Width="200" Tag="b2" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Status</Button>
+        <Button Width="200" Tag="b3" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Logs</Button>
+        <Button Width="200" Tag="b4" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Settings</Button>
+        <Button Width="100" Tag="b5" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Help</Button>
         </StackPanel>
         <ContentControl x:Name="MyContentControl" Margin="0,0,0,0" Grid.Row="1" />
 
