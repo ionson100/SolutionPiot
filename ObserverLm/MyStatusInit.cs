@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObserverLm
 {
-    class MyStatus
+    class MyStatusInit
     {
         public async Task RequestPiotAsync(string append,Func<string,string> action)
         {
@@ -52,14 +52,14 @@ namespace ObserverLm
 
         class TempInit
         {
-            [JsonProperty("token")]
-            public string Token { get; set; }
+            [JsonProperty("token")] 
+            public string Token { get; set; } = null!;
         }
         public async Task RequestInitAsync( Func<string, string> action)
         {
 
-            string url=null;
-            string json=null;
+            string? url=null;
+            string? json=null;
             try
             {
                 
@@ -77,7 +77,7 @@ namespace ObserverLm
                 string responseBody = await response.Content.ReadAsStringAsync();
                 if (status == 200)
                 {
-                    string prettyJson = JToken.Parse(responseBody).ToString(Formatting.Indented);
+                    string prettyJson = $"Инициализация успешно.Http status:200{Environment.NewLine}Смотри вкладку Status, наблюдай за логами.";
                     action.Invoke(prettyJson);
                 }
                 else

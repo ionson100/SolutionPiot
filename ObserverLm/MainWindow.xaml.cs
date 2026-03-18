@@ -38,7 +38,7 @@ namespace ObserverLm
                         }
                         try
                         {
-                            await new MyStatus().RequestInitAsync(s =>
+                            await new MyStatusInit().RequestInitAsync(s =>
                             {
                                 MyContentControl.Content = new StatusControl(s);
                                 return "";
@@ -63,7 +63,7 @@ namespace ObserverLm
                     }
                     try
                     {
-                        await new MyStatus().RequestPiotAsync("status",s =>
+                        await new MyStatusInit().RequestPiotAsync("status",s =>
                         {
                             MyContentControl.Content = new StatusControl(s);
                             return "";

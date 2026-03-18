@@ -82,7 +82,7 @@
       <DependentUpon>HelpControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MySettings.cs" />
-    <Compile Include="MyStatus.cs" />
+    <Compile Include="MyStatusInit.cs" />
     <Compile Include="StatusControl.xaml.cs">
       <DependentUpon>StatusControl.xaml</DependentUpon>
     </Compile>
