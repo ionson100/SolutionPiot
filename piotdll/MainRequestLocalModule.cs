@@ -129,7 +129,7 @@ public class MainRequestLocalModule
 
         using var httpClient = new HttpClient();
         httpClient.Timeout = TimeSpan.FromMilliseconds(3000);
-        httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
+       
         httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         httpClient.DefaultRequestHeaders.Add("Authorization", authToken);
 

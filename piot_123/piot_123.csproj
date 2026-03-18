@@ -39,4 +39,8 @@
     <ProjectReference Include="..\piotdll\piotdll.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="piot\logs\" />
+  </ItemGroup>
+
 </Project>

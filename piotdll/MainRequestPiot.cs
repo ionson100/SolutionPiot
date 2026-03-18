@@ -109,7 +109,7 @@ public class MainRequestPiot
             log.AppendLine($"URL TC РИоТ: {urlCore}");
             log.AppendLine("Тело запроса:");
             log.AppendLine(jsonBody);
-
+            UtilsPiot.DisableCertificateValidationGlobally();
             // Настройка HttpClient
             httpClient = new HttpClient();
             httpClient.Timeout = TimeSpan.FromMilliseconds(MainPoint.MySettings.Timeout); // Тайм аут соединения и чтения
@@ -194,8 +194,10 @@ public class MainRequestPiot
         }
         catch (Exception ex)
         {
+            string message=ex.Message;
             // Любая другая ошибка (парсинг, внутренняя)
             var errorOut = new MOut { TotalErrorMessage = $"Внутренняя ошибка: {ex.Message}" };
+            log.AppendLine($"Произошла внутренняя ошибка при проверке кодов: {message}");
             resultCallback(errorOut);
         }
         finally

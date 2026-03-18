@@ -13,11 +13,13 @@ namespace test_console
         }
         static void Main(string[] args)
         {
-            MainPoint mainPoint=new MainPoint(new MySettings(), GetPrice,true);
+            MySettings mySettings = new MySettings();
+            mySettings.UrlPiot= "https://localhost:51401/api/v2/codes/check";
+            MainPoint mainPoint=new MainPoint(mySettings, GetPrice,true);
             MOut mOut = mainPoint.CheckCode(new List<string>
             {
                 "0104670540176099215'W9Um\u001d93dGVz", 
-                "0104670540176099215<pGKy\u001d93DGVz"
+               
             }).Result;
             Console.WriteLine(mOut.LogString);
             Console.ReadLine();

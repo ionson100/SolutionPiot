@@ -1,0 +1,31 @@
+﻿<Window x:Class="ObserverLm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ObserverLm"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="ObserverLm" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+    <StackPanel Orientation="Horizontal">
+            <Button Width="200" Tag="b1" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Init</Button>
+            <Button Width="200" Tag="b2" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Status</Button>
+            <Button Width="200" Tag="b3" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Logs</Button>
+            <Button Width="200" Tag="b4" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Settings</Button>
+        </StackPanel>
+        <ContentControl x:Name="MyContentControl" Margin="0,0,0,0" Grid.Row="1" />
+
+        <ProgressBar Grid.Row="1" Name="LoadingBar"
+                     IsIndeterminate="True" 
+                     Width="50" Height="50"
+                     Visibility="Collapsed" />
+      
+
+    </Grid>
+</Window>

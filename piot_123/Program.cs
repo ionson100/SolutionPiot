@@ -34,12 +34,23 @@ builder.Services.AddSwaggerGen(options =>
     // Второй параметр (true) включает комментарии для контроллеров, если вы их тоже добавите
 });
 
+// 1. Настройка Serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console() // Указываем вывод в консоль
+    .WriteTo.File("piot/logs/log-.txt",
+        rollingInterval: RollingInterval.Day, // Ротация каждый день (создаст log-20231005.txt)
+        rollOnFileSizeLimit: true,           // Создавать новый файл при достижении лимита размера
+        fileSizeLimitBytes: 10 * 1024 * 1024, // Лимит 10 МБ (по умолчанию 1 ГБ)
+        retainedFileCountLimit: 7            // Хранить только последние 7 файлов
+    )
+    .CreateLogger();
 
+builder.Host.UseSerilog();
 // Настройка Serilog
-builder.Host.UseSerilog((context, config) =>
-{
-    config.ReadFrom.Configuration(context.Configuration);
-});
+//builder.Host.UseSerilog((context, config) =>
+//{
+//    config.ReadFrom.Configuration(context.Configuration);
+//});
 
 
 // Добавляем внешний файл конфигурации (будет смонтирован в Docker если вы не передадите тома в параметрах запуска)

@@ -34,7 +34,7 @@ namespace piotdll
         /// </summary>
         /// <param name="codes">Список кодов (код полный с разделителем групп</param>
         /// <returns>MOut — результат проверки или описание ошибки, записанное в поле: TotalErrorMessage</returns>
-        public async Task<MOut> CheckCode(List<string>? codes)
+        public async Task<MOut> CheckCode(List<string> codes)
         {
             if(codes == null || codes.Count == 0)
             {

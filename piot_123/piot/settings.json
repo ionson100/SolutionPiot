@@ -4,9 +4,9 @@
     "Name": "bitnic",
     "Version": "0.0.1",
     "Id": "18aa4ecf-523c-4c2a-a759-d0435f4c0408",
-    "UrlPiot": "https://esm-emu.ao-esp.ru/api/v2/codes/check",
+    "UrlPiot": "https://localhost:51401/api/v2/codes/check",
     "UrlLocalModule": "http://localhost:5995/api/v2/cis/outCheck",
-    "Timeout": 3500,
+    "Timeout": 30000,
     "Authorization": "Base xxxxxxxxxxxxxxx"
   }
 }
