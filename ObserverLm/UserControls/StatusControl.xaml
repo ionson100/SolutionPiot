@@ -12,20 +12,19 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- json текстовое поле -->
+        <!-- json текстовое поле --> 
         <TextBox Grid.Row="0" 
-                 FontSize="20"
-                 
-                 FontFamily="Consolas" 
-                 IsReadOnly="True" 
-                
                  Name="TextBoxStatus"
-                 AcceptsReturn="True" 
-                 TextWrapping="Wrap" 
-                 VerticalScrollBarVisibility="Auto" 
-                 SpellCheck.IsEnabled="True"
-                 BorderThickness="0" 
-                 Padding="10" />
+                 Padding="20"
+                 IsReadOnly="True"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto"
+                 FontSize="20"
+                 FontWeight="Bold"
+                 FontFamily="Consolas, Courier New, monospace"
+                 ToolTip="JSON-ответ от сервера" />
 
        
        

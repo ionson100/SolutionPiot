@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
+using ObserverLm.UserControls;
 
 namespace ObserverLm
 {
@@ -13,6 +15,20 @@ namespace ObserverLm
         {
             InitializeComponent();
             MyContentControl.Content = new LogsControl();
+            if (IsAdministrator())
+            {
+                ButtonSerwice.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ButtonSerwice.Visibility = Visibility.Collapsed;
+            }
+        }
+        public static bool IsAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -32,11 +48,8 @@ namespace ObserverLm
                     if (result == MessageBoxResult.Yes)
                     {
                         LoadingBar.Visibility = Visibility.Visible;
-                        if (MyContentControl.Content is IDisposable disposable)
-                        {
-                            disposable.Dispose();
-                        }
-                        try
+                        DisposeCurrentControl();
+                            try
                         {
                             await new MyStatusInit().RequestInitAsync(s =>
                             {
@@ -50,17 +63,12 @@ namespace ObserverLm
 
                         }
                     }
-
                     break;
-                        
                 }
                 case "b2":
                 {
                     LoadingBar.Visibility = Visibility.Visible;
-                    if (MyContentControl.Content is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
+                    DisposeCurrentControl();
                     try
                     {
                         await new MyStatusInit().RequestPiotAsync("status",s =>
@@ -79,22 +87,16 @@ namespace ObserverLm
                 }
                 case "b3":
                 {
-                    if (MyContentControl.Content is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    MyContentControl.Content = new LogsControl();
+                    DisposeCurrentControl();
+                        MyContentControl.Content = new LogsControl();
                     break;
                 }
 
                 case "b4":
                 {
 
-                    if (MyContentControl.Content is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    MyContentControl.Content = new SettingsControl();
+                    DisposeCurrentControl();
+                        MyContentControl.Content = new SettingsControl();
                     break;
 
 
@@ -103,13 +105,33 @@ namespace ObserverLm
                 }
                 case "b5":
                 {
-                    if (MyContentControl.Content is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    MyContentControl.Content = new HelpControl1();
+                    DisposeCurrentControl();
+                        MyContentControl.Content = new HelpControl1();
                     break;
                 }
+                case "bs":
+                {
+                    DisposeCurrentControl();
+
+                        MyContentControl.Content = new ServiceControlView();
+                    break;
+                }
+                case "bc":
+                {
+
+                    DisposeCurrentControl();
+
+                    MyContentControl.Content = new CodeCheckerControl();
+                    break;
+                }
+            }
+        }
+
+        void DisposeCurrentControl()
+        {
+            if (MyContentControl.Content is IDisposable disposable)
+            {
+                disposable.Dispose();
             }
         }
     }

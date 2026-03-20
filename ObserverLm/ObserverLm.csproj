@@ -60,6 +60,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,23 +79,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="HelpControl1.xaml.cs">
+    <Compile Include="UserControls\CodeCheckerControl.xaml.cs">
+      <DependentUpon>CodeCheckerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HelpControl1.xaml.cs">
       <DependentUpon>HelpControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MySettings.cs" />
     <Compile Include="MyStatusInit.cs" />
-    <Compile Include="StatusControl.xaml.cs">
+    <Compile Include="UserControls\ServiceControlView.xaml.cs">
+      <DependentUpon>ServiceControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StatusControl.xaml.cs">
       <DependentUpon>StatusControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="HelpControl1.xaml">
+    <Page Include="UserControls\CodeCheckerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsComtrol.xaml">
+    <Page Include="UserControls\HelpControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LogsControl.xaml">
+    <Page Include="UserControls\ServiceControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SettingsComtrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LogsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,10 +121,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SettingsComtrol.xaml.cs">
+    <Compile Include="UserControls\SettingsComtrol.xaml.cs">
       <DependentUpon>SettingsComtrol.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogsControl.xaml.cs">
+    <Compile Include="UserControls\LogsControl.xaml.cs">
       <DependentUpon>LogsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -120,7 +135,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="StatusControl.xaml">
+    <Page Include="UserControls\StatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,6 +176,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.3856.49\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.3856.49\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

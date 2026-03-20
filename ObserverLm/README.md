@@ -2,7 +2,9 @@
 версия модуля ```2.****```\, api версии 2\
 Позволяет инициализировать, наблюдать за логами, получать статус.\
 При старте программы, убедитесь что настройки программы верные.\
-Настройки находятся в директории settings, в файле srttings.json.
+Настройки находятся в директории settings, в файле srttings.json.\
+Внимание: Если приложение запустить с правами Администратора,
+то появится возможность управлять службами:```regime```, ```yenisei```.
 
 ```csharp
     internal class MySettings
@@ -31,11 +33,11 @@
         public int Tail { get; set; } = 100;
     }
 ```
-По умолчанию:
+По умолчанию: (Auth: admin:admin в Base64) и Tail: 100)
 ```json
 {
   "Url": "http://localhost:5995/api/v2/",
-  "Auth": "YWRtaW46YWRtaW4=", //(admin:admin в Base64))
+  "Auth": "YWRtaW46YWRtaW4="
   "Token": "97486293-646b-463e-8199-48c37e36d605",
   "FolderLog": "C:\\Program Files\\Regime\\var\\log",
   "Tail": 100

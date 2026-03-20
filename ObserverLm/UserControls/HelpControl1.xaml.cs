@@ -19,6 +19,9 @@ namespace ObserverLm
         {
             try
             {
+
+                //regime
+                //yenisei
                 // 1. Ждем инициализации движка Edge Chromium
                 await WebView.EnsureCoreWebView2Async(null);
 

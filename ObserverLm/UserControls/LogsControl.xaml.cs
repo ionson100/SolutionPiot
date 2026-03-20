@@ -115,24 +115,26 @@ namespace ObserverLm
         }
 
 
+
         private void CopyMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (LogMonitor1.SelectedItems.Count > 0)
-            {
-                if ((ListBox)sender == LogMonitor1)
-                {
-                    var lines = LogMonitor1.SelectedItems.Cast<object>().Select(item => item.ToString());
-                    string textToCopy = string.Join(Environment.NewLine, lines);
-                    Clipboard.SetText(textToCopy);
-                }
-                else
-                {
-                    var lines = LogMonitor2.SelectedItems.Cast<object>().Select(item => item.ToString());
-                    string textToCopy = string.Join(Environment.NewLine, lines);
-                    Clipboard.SetText(textToCopy);
-                }
+            { 
+                var lines = LogMonitor1.SelectedItems.Cast<object>().Select(item => item.ToString()); 
+                string textToCopy = string.Join(Environment.NewLine, lines); 
+                Clipboard.SetText(textToCopy);
             }
+            if (LogMonitor2.SelectedItems.Count > 0)
+            {
+             
+                var lines = LogMonitor2.SelectedItems.Cast<object>().Select(item => item.ToString());
+                string textToCopy = string.Join(Environment.NewLine, lines);
+                Clipboard.SetText(textToCopy);
+             
+            }
+
         }
+        //invalid cis format
 
         public void Dispose()
         {
