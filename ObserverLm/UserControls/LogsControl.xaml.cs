@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Path = System.IO.Path;
 
-namespace ObserverLm
+namespace ObserverLm.UserControls
 {
     /// <summary>
     /// Логика взаимодействия для LogsControl.xaml
@@ -19,12 +19,19 @@ namespace ObserverLm
     {
         private readonly ObservableCollection<string> _logLines1 = new ObservableCollection<string>();
         private readonly ObservableCollection<string> _logLines2 = new ObservableCollection<string>();
-        private CancellationTokenSource _cts1;
-        private CancellationTokenSource _cts2;
+        private readonly CancellationTokenSource _cts1 = null!;
+        private readonly CancellationTokenSource _cts2 = null!;
         private readonly MySettings _settings;
         public LogsControl()
         {
             InitializeComponent();
+            if(Properties.Settings.Default.TopRowHeight > 0)
+            {
+                TopRow.Height = new GridLength(
+                    Properties.Settings.Default.TopRowHeight,
+                    GridUnitType.Pixel);
+            }
+            
 
             _settings = MySettings.GetSettings();
             LogMonitor1.ItemsSource = _logLines1;
@@ -142,6 +149,8 @@ namespace ObserverLm
             _cts2?.Cancel();
             _cts1?.Dispose();
             _cts2?.Dispose();
+            Properties.Settings.Default.TopRowHeight = (int)TopRow.ActualHeight;
+            Properties.Settings.Default.Save();
 
         }
     }

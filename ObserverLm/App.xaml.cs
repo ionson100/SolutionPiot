@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 
 namespace ObserverLm
 {
+    
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
+        public  const string ApplicationJson = "application/json";
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -36,8 +39,7 @@ namespace ObserverLm
         // Ошибки всего домена (обычно фатальные)
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var ex = e.ExceptionObject as Exception;
-            LogException(ex, "AppDomain Fatal Error");
+            if (e.ExceptionObject is Exception ex) LogException(ex, "AppDomain Fatal Error");
 
             if (e.IsTerminating)
                 MessageBox.Show("Критическая ошибка. Приложение будет закрыто.");
@@ -50,7 +52,7 @@ namespace ObserverLm
             e.SetObserved(); // Предотвращает падение приложения
         }
 
-        private void LogException(Exception ex, string source)
+        private void LogException(Exception? ex, string source)
         {
            
             string logText = $"[{DateTime.Now}] [{source}] {ex?.Message}\n{ex?.StackTrace}\n";

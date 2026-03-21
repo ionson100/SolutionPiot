@@ -24,25 +24,34 @@
 
         <!-- Параметр 1 -->
         <Label Content="URL:"  FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Name="TxtUrl"  Style="{StaticResource EditOrder}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+        <TextBox Name="TxtUrl"  Style="{StaticResource EditOrder}" Grid.Row="0" Grid.Column="1"
+                 ToolTip="Адрес обращения к локальному модулю"
+                 Grid.ColumnSpan="2" Margin="5"/>
 
         <!-- Параметр 2 -->
         <Label Content="BASIC:" FontWeight="Bold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Name="TxtBasic" Style="{StaticResource EditOrder}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+        <TextBox Name="TxtBasic" Style="{StaticResource EditOrder}" Grid.Row="1" Grid.Column="1"
+                 ToolTip="Строка login:password в Base64"
+                 Grid.ColumnSpan="2" Margin="5"/>
 
         <!-- Параметр 3 -->
         <Label Content="TOKEN:" FontWeight="Bold" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Name="TxtToken" Style="{StaticResource EditOrder}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+        <TextBox Name="TxtToken" Style="{StaticResource EditOrder}" Grid.Row="2" Grid.Column="1"
+                 ToolTip="Токен для авторизации при обращении к локальному модулю"
+                 Grid.ColumnSpan="2" Margin="5"/>
 
         <Label Content="TAIL:" FontWeight="Bold" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox Name="TxtTail" Style="{StaticResource EditOrder}"
+                 ToolTip="Количество последних строк для отображения при запуске из файла лога"
                  PreviewTextInput="NumberValidationTextBox" 
                  DataObject.Pasting="TextBox_Pasting"
                  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
 
         <!-- Параметр 4 (с кнопкой выбора папки) -->
         <Label Content="FOLDER LOG:" FontWeight="Bold" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Name="TxtFolderPath" Style="{StaticResource EditOrder}" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <TextBox Name="TxtFolderPath" Style="{StaticResource EditOrder}" Grid.Row="4"
+                 ToolTip="Путь к папке с логами для отображения при запуске из папки логов"
+                 Grid.Column="1" Margin="5"/>
         <Button Content=". . ." Grid.Row="4" Grid.Column="2" Width="100" Margin="5" Click="BtnBrowse_Click"
                 Style="{StaticResource ButtonHeadPaneStyle}"/>
         <Button Content="Сохранить" Grid.Row="5" Grid.Column="1" Style="{StaticResource ButtonHeadPaneStyle}"  Height="50" 

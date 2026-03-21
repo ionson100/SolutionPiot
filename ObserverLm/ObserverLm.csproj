@@ -79,25 +79,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControlsSales\SaleControl.xaml.cs">
+      <DependentUpon>SaleControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CodeCheckerControl.xaml.cs">
       <DependentUpon>CodeCheckerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CurlControl.xaml.cs">
+      <DependentUpon>CurlControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CurlLoggingHandler.cs" />
     <Compile Include="UserControls\HelpControl1.xaml.cs">
       <DependentUpon>HelpControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MySettings.cs" />
     <Compile Include="MyStatusInit.cs" />
+    <Compile Include="UserControls\SalesControl.xaml.cs">
+      <DependentUpon>SalesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ServiceControlView.xaml.cs">
       <DependentUpon>ServiceControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\StatusControl.xaml.cs">
       <DependentUpon>StatusControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControlsSales\SaleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\CodeCheckerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\CurlControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\HelpControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SalesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,6 +187,9 @@
     </None>
     <None Include="README.md" />
     <None Include="settings\settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="123.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

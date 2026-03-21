@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System;
-using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 
-namespace ObserverLm
+namespace ObserverLm.UserControls
 {
-    public partial class ServiceControlView : UserControl
+    public partial class ServiceControlView
     {
         public ServiceControlView()
         {
@@ -40,16 +34,26 @@ namespace ObserverLm
             Services.Add(new ServiceItem("regime"));
             Services.Add(new ServiceItem("yenisei"));
 
-            StartCommand = new RelayCommand<ServiceItem>(async item => await item.StartAsync(), item => item?.CanStart == true);
-            StopCommand = new RelayCommand<ServiceItem>(async item => await item.StopAsync(), item => item?.CanStop == true);
+            StartCommand = new RelayCommand<ServiceItem>(Execute, item => item?.CanStart == true);
+            StopCommand = new RelayCommand<ServiceItem>(Action, item => item?.CanStop == true);
             RefreshCommand = new RelayCommand(RefreshAll);
 
             // Подписка на ошибки для отображения пользователю
             foreach (var service in Services)
             {
-                service.ErrorOccurred += (s, msg) =>
+                service.ErrorOccurred += (_, msg) =>
                     MessageBox.Show(msg, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private async void Action(ServiceItem item)
+        {
+            await item.StopAsync();
+        }
+
+        private async void Execute(ServiceItem item)
+        {
+            await item.StartAsync();
         }
 
         private void RefreshAll()
@@ -60,13 +64,13 @@ namespace ObserverLm
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        public event PropertyChangedEventHandler PropertyChanged = null!;
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+            => PropertyChanged?.Invoke(this, e: new PropertyChangedEventArgs(propertyName));
     }
     public class ServiceItem : INotifyPropertyChanged
     {
-        private readonly ServiceController _controller;
+        private readonly ServiceController? _controller;
         private ServiceControllerStatus _status;
         private bool _isBusy;
         private bool _isValid = true;
@@ -107,7 +111,7 @@ namespace ObserverLm
         public bool CanStart => !IsBusy && IsValid && (Status == ServiceControllerStatus.Stopped || Status == ServiceControllerStatus.Paused);
         public bool CanStop => !IsBusy && IsValid && (Status == ServiceControllerStatus.Running);
 
-        public event EventHandler<string> ErrorOccurred;
+        public event EventHandler<string>? ErrorOccurred;
 
         public ServiceItem(string serviceName)
         {
@@ -134,8 +138,8 @@ namespace ObserverLm
             IsBusy = true;
             try
             {
-                await Task.Run(() => _controller.Start());
-                await Task.Run(() => _controller.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(30)));
+                await Task.Run(Function);
+                await Task.Run(() => _controller?.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(30)));
                 Refresh();
             }
             catch (Exception ex)
@@ -149,14 +153,19 @@ namespace ObserverLm
             }
         }
 
+        private void Function()
+        {
+            _controller?.Start();
+        }
+
         public async Task StopAsync()
         {
             if (!CanStop) return;
             IsBusy = true;
             try
             {
-                await Task.Run(() => _controller.Stop());
-                await Task.Run(() => _controller.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(30)));
+                await Task.Run(() => _controller?.Stop());
+                await Task.Run(() => _controller?.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(30)));
                 Refresh();
             }
             catch (Exception ex)
@@ -175,8 +184,8 @@ namespace ObserverLm
             if (!IsValid) return;
             try
             {
-                _controller.Refresh();
-                Status = _controller.Status;
+                _controller?.Refresh();
+                if (_controller != null) Status = _controller.Status;
             }
             catch
             {
@@ -186,16 +195,16 @@ namespace ObserverLm
 
         protected virtual void OnError(string message) => ErrorOccurred?.Invoke(this, message);
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
     public class RelayCommand : ICommand
     {
         private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
+        private readonly Func<bool>? _canExecute;
 
-        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        public RelayCommand(Action execute, Func<bool>? canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
@@ -205,17 +214,17 @@ namespace ObserverLm
         public void Execute(object parameter) => _execute();
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
     }
 
     public class RelayCommand<T> : ICommand
     {
         private readonly Action<T> _execute;
-        private readonly Func<T, bool> _canExecute;
+        private readonly Func<T, bool>? _canExecute;
 
-        public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
+        public RelayCommand(Action<T> execute, Func<T, bool>? canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
@@ -225,13 +234,13 @@ namespace ObserverLm
         public void Execute(object parameter) => _execute((T)parameter);
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
     }
     public class ServiceStatusToColorConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is ServiceControllerStatus status)
             {
@@ -250,7 +259,7 @@ namespace ObserverLm
             return new SolidColorBrush(Colors.Gray);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
             => throw new NotSupportedException();
     }
 }

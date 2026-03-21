@@ -1,15 +1,17 @@
 ﻿#nullable enable
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ObserverLm.UserControls
 {
@@ -34,10 +36,10 @@ namespace ObserverLm.UserControls
                 return;
             }
 
-            await RequestCodeCheckAsync(InputTextBox.Text.Trim(),InputTextBoxGroup.Text.Trim(), s =>
+            await RequestCodeCheckAsync(InputTextBox.Text.Trim(),InputTextBoxGroup.Text.Trim(), (s,sr) =>
             {
                 OutputTextBox.Text = s;
-                return "";
+                CurrentControlCore.SetCurlText(sr);
             });
 
         }
@@ -78,10 +80,11 @@ namespace ObserverLm.UserControls
             [JsonProperty("pg",NullValueHandling = NullValueHandling.Ignore)]
             public int? Pg { get; set; }
         }
+        //0104670540176099215'W9Um
 
-        public async Task RequestCodeCheckAsync(string code,string group, Func<string, string> action)
+        public async Task RequestCodeCheckAsync(string code,string group, Action<string,string> action)
         {
-
+            string request = "";
             LmListCode lmListCode = new LmListCode();
             lmListCode.CisList.Add(new LmItemCode { Cis = code,Pg = string.IsNullOrWhiteSpace(group)?null:int.Parse(group)});
             string? url = null;
@@ -89,30 +92,33 @@ namespace ObserverLm.UserControls
             LoadingBar.Visibility = Visibility.Visible;
             try
             {
-                
                 MySettings settings = MySettings.GetSettings();
-                using var httpClient = new HttpClient();
+                using var httpClient = new HttpClient(new CurlLoggingHandler(
+                    new HttpClientHandler(),
+                    s => request=s
+                ));
                 httpClient.Timeout = TimeSpan.FromMilliseconds(3000);
-
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(App.ApplicationJson));
                 httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {settings.Auth}");
                 // Отправка POST-запроса
                 url = settings.Url + "cis/outCheck";
                 json = JsonConvert.SerializeObject(lmListCode);
                 using var response = await httpClient.PostAsync(url,
-                    new StringContent(json, Encoding.UTF8, "application/json"));
+                    new StringContent(json, Encoding.UTF8, App.ApplicationJson));
+
                 int status = (int)response.StatusCode;
                 string responseBody = await response.Content.ReadAsStringAsync();
                 if (status == 200)
                 {
                     string prettyJson = JToken.Parse(responseBody).ToString(Formatting.Indented);
-                    action.Invoke(prettyJson);
+                    action.Invoke(prettyJson,request);
                 }
                 else
                 {
                     string error = "Ошибка при запросе к API. Код статуса: " + status + Environment.NewLine +
                                    responseBody + Environment.NewLine +
                                    "Url: " + url + Environment.NewLine + json;
-                    action.Invoke(error);
+                    action.Invoke(error,request);
                 }
 
 
@@ -123,7 +129,7 @@ namespace ObserverLm.UserControls
                 string error = "Ошибка при запросе к API. Exception: " + Environment.NewLine + ex.Message +
                                Environment.NewLine + url +
                                Environment.NewLine + json;
-                action.Invoke(error);
+                action.Invoke(error,request);
             }
             finally
             {
@@ -131,5 +137,6 @@ namespace ObserverLm.UserControls
 
             }
         }
+
     }
 }

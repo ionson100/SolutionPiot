@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ObserverLm.UserControls;
+using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
-using ObserverLm.UserControls;
 
 namespace ObserverLm
 {
@@ -11,6 +13,7 @@ namespace ObserverLm
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Button _selectedButton;
         public MainWindow()
         {
             InitializeComponent();
@@ -23,6 +26,8 @@ namespace ObserverLm
             {
                 ButtonSerwice.Visibility = Visibility.Collapsed;
             }
+
+            _selectedButton = this.ButtonLog;
         }
         public static bool IsAdministrator()
         {
@@ -31,9 +36,21 @@ namespace ObserverLm
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
+        void DefaultStyle()
+        {
+            foreach (var button1 in ButtonHost.Children.OfType<Button>())
+            {
+                button1.Style = (Style)this.FindResource("ButtonHeadPaneStyle");
+            }
+        }
+
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
+            Button button = (Button)sender; 
+           
+            DefaultStyle();
+
+            button.Style = (Style)this.FindResource("ButtonHeadPaneSelectStyle");
             switch (button.Tag)
             {
                 case "b1":
@@ -51,10 +68,10 @@ namespace ObserverLm
                         DisposeCurrentControl();
                             try
                         {
-                            await new MyStatusInit().RequestInitAsync(s =>
+                            await new MyStatusInit().RequestInitAsync((s,sr) =>
                             {
-                                MyContentControl.Content = new StatusControl(s);
-                                return "";
+                               
+                                MyContentControl.Content = new StatusControl(s,sr);
                             });
                         }
                         finally
@@ -62,6 +79,11 @@ namespace ObserverLm
                             LoadingBar.Visibility = Visibility.Collapsed;
 
                         }
+                    }
+                    else
+                    {
+                        DefaultStyle();
+                        _selectedButton.Style = (Style)this.FindResource("ButtonHeadPaneSelectStyle");
                     }
                     break;
                 }
@@ -71,10 +93,9 @@ namespace ObserverLm
                     DisposeCurrentControl();
                     try
                     {
-                        await new MyStatusInit().RequestPiotAsync("status",s =>
+                        await new MyStatusInit().RequestPiotAsync("status",(s,sr) =>
                         {
-                            MyContentControl.Content = new StatusControl(s);
-                            return "";
+                            MyContentControl.Content = new StatusControl(s,sr);
                         });
                     }
                     finally
@@ -83,6 +104,45 @@ namespace ObserverLm
 
                     }
                  
+                    break;
+                }
+
+                case "bst":
+                {
+                    LoadingBar.Visibility = Visibility.Visible;
+                    DisposeCurrentControl();
+                    try
+                    {
+                        await new MyStatusInit().RequestPiotAsync("stats", (s, sr) =>
+                        {
+                            MyContentControl.Content = new StatusControl(s, sr);
+                        });
+                    }
+                    finally
+                    {
+                        LoadingBar.Visibility = Visibility.Collapsed;
+
+                    }
+
+                    break;
+                }
+                case "bconfig":
+                {
+                    LoadingBar.Visibility = Visibility.Visible;
+                    DisposeCurrentControl();
+                    try
+                    {
+                        await new MyStatusInit().RequestPiotAsync("config", (s, sr) =>
+                        {
+                            MyContentControl.Content = new StatusControl(s, sr);
+                        });
+                    }
+                    finally
+                    {
+                        LoadingBar.Visibility = Visibility.Collapsed;
+
+                    }
+
                     break;
                 }
                 case "b3":
@@ -124,7 +184,16 @@ namespace ObserverLm
                     MyContentControl.Content = new CodeCheckerControl();
                     break;
                 }
+                case "bsales":
+                {
+
+                    DisposeCurrentControl();
+
+                    MyContentControl.Content = new SalesControl(SalesControlType.Sale);
+                    break;
+                }
             }
+            _selectedButton=button;
         }
 
         void DisposeCurrentControl()
@@ -133,6 +202,11 @@ namespace ObserverLm
             {
                 disposable.Dispose();
             }
+        }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            DisposeCurrentControl();
+            base.OnClosing(e);
         }
     }
 }

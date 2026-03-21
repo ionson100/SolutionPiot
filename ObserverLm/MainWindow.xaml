@@ -13,14 +13,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-    <StackPanel Orientation="Horizontal">
-        <Button Width="120" Tag="b1" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Init</Button>
-        <Button Width="120" Tag="b2" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Status</Button>
-        <Button Width="120" Tag="b3" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Logs</Button>
-        <Button Width="120" Tag="b4" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Settings</Button>
-            <Button Width="120" Tag="bc" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Checker</Button>
-            <Button Width="120" Tag="bs" Style="{StaticResource ButtonHeadPaneStyle}" Name="ButtonSerwice" Click="ButtonBase_OnClick">Service</Button>
-        <Button Width="100" Tag="b5" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Help</Button>
+    <StackPanel Orientation="Horizontal" Name="ButtonHost">
+        <Button Width="100" Tag="b1" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Init</Button>
+        <Button Width="100" Tag="b2" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Status</Button>
+        <Button Width="100" Tag="bst" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Stats</Button>
+        <Button Width="100" Tag="bconfig" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Config</Button>
+        <Button Width="100" Tag="b3" Name="ButtonLog"  Style="{StaticResource ButtonHeadPaneSelectStyle}" Click="ButtonBase_OnClick">Logs</Button>
+        <Button Width="100" Tag="b4" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Settings</Button>
+        <Button Width="100" Tag="bc" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Checker</Button>
+        <Button Width="100" Tag="bsales" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Sales</Button>
+        <Button Width="100" Tag="bs" Style="{StaticResource ButtonHeadPaneStyle}" Name="ButtonSerwice" Click="ButtonBase_OnClick">Service</Button>
+        <Button Width="80" Tag="b5" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Help</Button>
         </StackPanel>
         <ContentControl x:Name="MyContentControl" Margin="0,0,0,0" Grid.Row="1" />
 

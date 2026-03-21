@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="ObserverLm.UserControls.SalesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ObserverLm.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Name="PanelHost">
+            <Button Width="204" Tag="bSale" Style="{StaticResource ButtonHeadPaneSelectStyle}" Click="ButtonBase_OnClick">Продать продукт</Button>
+            <Button Width="204" Tag="bSaleReturn" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Отменить продажу</Button>
+            <Button Width="204" Tag="bSaleCheck" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Проверить продажу</Button>
+            <Button Width="204" Tag="bSaleList" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">Список проданных</Button>
+            <Button Width="80" Tag="bApi" Style="{StaticResource ButtonHeadPaneStyle}" Click="ButtonBase_OnClick">API LM</Button>
+        </StackPanel>
+        <ContentControl x:Name="MyContentControl" Margin="0,0,0,0" Grid.Row="1" />
+        <ProgressBar Grid.Row="1" Name="LoadingBar"
+                     IsIndeterminate="True" 
+                     Width="50" Height="50"
+                     Visibility="Collapsed" />
+
+    </Grid>
+</UserControl>
