@@ -34,5 +34,29 @@ namespace ObserverLm.Properties {
                 this["TopRowHeight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Skip {
+            get {
+                return ((int)(this["Skip"]));
+            }
+            set {
+                this["Skip"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int Limit {
+            get {
+                return ((int)(this["Limit"]));
+            }
+            set {
+                this["Limit"] = value;
+            }
+        }
     }
 }

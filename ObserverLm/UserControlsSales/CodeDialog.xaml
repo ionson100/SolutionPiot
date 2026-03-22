@@ -1,0 +1,20 @@
+﻿<Window x:Class="ObserverLm.UserControlsSales.CodeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Параметры запроса" Height="340" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Пропустить (Skip):" FontSize="18" Margin="0,0,0,5" FontWeight="DemiBold"/>
+            <TextBox x:Name="TxtSkip" Padding="5" PreviewTextInput="OnlyNumbers" Style="{StaticResource EditOrder}" />
+
+            <TextBlock Text="Лимит (Limit: 1 - 1000):" FontSize="18" Margin="0,15,0,5" FontWeight="DemiBold"/>
+            <TextBox x:Name="TxtLimit"  Padding="5" PreviewTextInput="OnlyNumbers"  Style="{StaticResource EditOrder}" />
+
+            <Button Content="ПОЛУЧИТЬ" Click="GetCodes_Click" Margin="0,25,0,0" Width="150"
+                    Height="35" Style="{StaticResource ButtonHeadPaneStyle}" IsDefault="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

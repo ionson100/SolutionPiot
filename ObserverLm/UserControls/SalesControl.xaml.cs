@@ -61,20 +61,25 @@ namespace ObserverLm.UserControls
                 }
                 case "bSaleList":
                 {
-                    LoadingBar.Visibility = Visibility.Visible;
-                    try
+                    CodeDialog codeDialog = new CodeDialog();
+                    if (codeDialog.ShowDialog() == true)
                     {
-                        await new MyStatusInit().RequestPiotAsync("cis/sold?skip=0&limit=1000", (s, s1) =>
+                        LoadingBar.Visibility = Visibility.Visible;
+                        try
                         {
-                            MyContentControl.Content = new StatusControl(s, s1);
-                        });
+                            await new MyStatusInit().RequestPiotAsync($"cis/sold?skip={Properties.Settings.Default.Skip}&limit={Properties.Settings.Default.Limit}", (s, s1) =>
+                            {
+                                MyContentControl.Content = new StatusControl(s, s1);
+                            });
 
-                    }
-                    finally
-                    {
+                        }
+                        finally
+                        {
 
-                        LoadingBar.Visibility = Visibility.Collapsed;
+                            LoadingBar.Visibility = Visibility.Collapsed;
+                        }
                     }
+                   
                     break;
                 }
                 case "bApi":

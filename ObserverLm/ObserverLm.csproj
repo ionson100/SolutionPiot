@@ -79,6 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControlsSales\CodeDialog.xaml.cs">
+      <DependentUpon>CodeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlsSales\SaleControl.xaml.cs">
       <DependentUpon>SaleControl.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
     <Compile Include="UserControls\StatusControl.xaml.cs">
       <DependentUpon>StatusControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControlsSales\CodeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlsSales\SaleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
