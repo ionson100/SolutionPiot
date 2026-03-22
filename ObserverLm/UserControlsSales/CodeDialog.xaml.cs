@@ -41,7 +41,7 @@ namespace ObserverLm.UserControlsSales
                 Skip = skip;
                 Limit = limit;
                 Properties.Settings.Default.Skip=skip;
-                Properties.Settings.Default.Limit=Limit;
+                Properties.Settings.Default.Limit=limit;
                 Properties.Settings.Default.Save();
                 this.DialogResult = true; // Закрывает окно и возвращает успех
             }
